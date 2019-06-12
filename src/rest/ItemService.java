@@ -23,7 +23,7 @@ public class ItemService {
         Item item = new Item(jsonObject.getString("category"));
         itemList.add(item);
 
-        System.out.println("category is: " + jsonObject.getString("category"));
+        System.out.println("date is: " + jsonObject.getString("dateOfPurchase"));
         /*
         for(Item item1 : itemList) {
             System.out.println(item1);

@@ -1,13 +1,8 @@
-//suggestion by list in input=category
-$(function () {
-    var categories = ["c++", "java", "php", "coldfusion", "javascript", "asp", "ruby"];
-    $("#category").autocomplete({
-        source: categories,
-        minLenght: 0
-    }).focus(function () {
-        $(this).autocomplete("Search", "");
-    })
+var items = ["hej", "med", "dig", "4", "5"];
+$.each(items, function (i, item) {
+    console.log(i + " : " + item);
+    $('#mySelect').append($('<option>', {
+        value: item.value,
+        text : item.text
+    }));
 });
-
-
-
