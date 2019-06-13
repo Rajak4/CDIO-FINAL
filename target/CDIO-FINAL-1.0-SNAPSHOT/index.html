@@ -2,16 +2,20 @@
 <html lang="da">
 <head>
     <script src="jquery-3.1.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <!--used for search in dropdown-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+    <!--<script src="select2/dist/js/select2.min.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+
     <script type="text/javascript" src="script.js"></script>
     <script src="jquery.serialize-object.js"></script>
 
-
+    <link href="select2/dist/css/select2.min.css" type="text/css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <!--CSS for autocomplete dropdown box-->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
     <link rel="shortcut icon" href="img/logo_blue.png">
@@ -19,60 +23,25 @@
     <meta charset="UTF-8">
     <title>Regnskabshjælper</title>
 
-    <script>
-        //suggestion by list in input=category
-        var categories = ["c++", "java", "php", "coldfusion", "javascript", "asp", "ruby"];
-        $(function () {
-            $("#category").autocomplete({
-                source: categories,
-                minLenght: 0,
-                autoFocus: true
-            }).focus(function () {
-                $(this).autocomplete("Search", "");
-            })
-        });
-
-        //sends json object to url="rest/item" when clicked on the button.
-        //this is for the server to "catch" it from that url.
-        function getItem() {
-            if(!jQuery.inArray($('#category'), categories)) {
-                //to check if the search word is in the array
-            }
-            console.log("true");
-            event.preventDefault();
-            var data = $('#itemForm').serializeJSON();
-            alert(JSON.stringify(data));
-            console.log(data);
-            $.ajax({
-                url: 'rest/item/',
-                method: 'POST',
-                contentType: "application/json",
-                data: data,
-                success: function (data) {
-                }
-            });
-        };
-
-
-    </script>
 </head>
 
-<body>
+<body onload="makeDropdown()">
 <h1 class="title is-2 has-text-centered">Regnskabshjælper</h1>
 
 <!--test of dropdown box from array-->
-<select id="mySelect">
-</select>
+
 
 <div class="columns is-mobile is-centered">
     <div class="column is-half">
 
         <form onsubmit="getItem()" id="itemForm"> <!--action="" method="post" target="_self"-->
 
-            <div class="">
-                <label for="category" class="label">Kategori: </label>
-                <input id="category" type="text" maxlength="45" class="input is-rounded" placeholder="Jubilæumsgaver" name="category" required> <br><br>
-            </div>
+            <label for="category" class="label" style="width: 100%">Kategori:</label>
+            <select name="category" id="category" required style="width: 100%;"></select>
+            <!--<div class="">-->
+                <!--<label for="category" class="label">Kategori: </label>-->
+                <!--<input id="category" type="text" maxlength="45" class="input is-rounded" placeholder="Jubilæumsgaver" name="category" required> <br><br>-->
+            <!--</div>-->
 
             <div class="">
                 <label for="productName" class="label">Produkt navn: </label>
@@ -111,4 +80,44 @@
 </div>
 
 </body>
+
+    <script>
+        //suggestion by list in input=category
+         var categories = ["c++", "java", "php", "coldfusion", "javascript", "asp", "ruby"];
+        // $(function () {
+        //     $("#category").autocomplete({
+        //         source: categories,
+        //         minLenght: 0,
+        //         autoFocus: false
+        //     }).focus(function () {
+        //         $(this).autocomplete("Search", "");
+        //     })
+        // });
+
+        //sends json object to url="rest/item" when clicked on the button.
+        //this is for the server to "catch" it from that url.
+        function getItem() {
+            if(!jQuery.inArray($('#category'), categories)) {
+                //to check if the search word is in the array
+            }
+            console.log("true");
+            event.preventDefault();
+            var data = $('#itemForm').serializeJSON();
+            console.log(data);
+            $.ajax({
+                url: 'rest/item/',
+                method: 'POST',
+                contentType: "application/json",
+                data: data,
+                success: function (data) {
+                }
+            });
+        };
+
+        $('#category').select2({
+
+        });
+
+    </script>
+
 </html>
