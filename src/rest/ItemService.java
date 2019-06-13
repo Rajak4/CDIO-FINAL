@@ -16,10 +16,14 @@ import java.util.List;
 public class ItemService {
 
     private List<Item> itemList = new ArrayList<>();
-    private List<String> categorys = new ArrayList<>();
+    private static List<String> categorys = new ArrayList<>();
 
-    public void addCategory(String category) {
-        this.categorys.add(category);
+    static {
+        categorys.add("10 - IT");
+        categorys.add("11 - Kørsel");
+        categorys.add("12 - Cafeteriet");
+        categorys.add("13 - Frønsegoder");
+        categorys.add("14 - Kontor");
     }
 
     @POST
@@ -34,7 +38,20 @@ public class ItemService {
 
     @GET
     public JSONArray categoryArray() {
-        return new JSONArray();
+        return new JSONArray(categorys);
+    }
+
+    @Path("add")
+    @POST
+    public void addCategory(String category) {
+        //creating JSON object of the string we get
+        JSONObject catObject = new JSONObject(category);
+        //take the string out of our JSON object
+        //here: json-key=testAddCategory and
+        //json-value=value of the text field
+        String cat = catObject.getString("testAddCategory");
+        this.categorys.add(cat);
+        System.out.println("added: " + cat);
     }
 
 }
