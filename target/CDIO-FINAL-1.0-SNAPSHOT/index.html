@@ -74,6 +74,9 @@
                 <textarea id="comment" name="comment" class="textarea" placeholder="Købt grundet..." required></textarea> <br>
 
             <input type="submit" class="button" id="button" value="Indsend">
+
+            <input type="text" id="testAddCategory" name="testAddCategory">
+            <input type="submit" id="testbtn" value="test" onclick="addCategory()">
         </form>
     </div>
 
@@ -97,10 +100,6 @@
         //sends json object to url="rest/item" when clicked on the button.
         //this is for the server to "catch" it from that url.
         function getItem() {
-            if(!jQuery.inArray($('#category'), categories)) {
-                //to check if the search word is in the array
-            }
-            console.log("true");
             event.preventDefault();
             var data = $('#itemForm').serializeJSON();
             console.log(data);

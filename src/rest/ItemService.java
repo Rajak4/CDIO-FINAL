@@ -3,6 +3,7 @@ package rest;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
+import com.sun.xml.internal.bind.v2.TODO;
 import dto.Item;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -41,6 +42,7 @@ public class ItemService {
         return new JSONArray(categorys);
     }
 
+    // TODO: 13-06-2019 gør det samme for købers navn
     @Path("add")
     @POST
     public void addCategory(String category) {
@@ -52,6 +54,9 @@ public class ItemService {
         String cat = catObject.getString("testAddCategory");
         this.categorys.add(cat);
         System.out.println("added: " + cat);
+        for(String s: categorys) {
+            System.out.println(s);
+        }
     }
 
 }
