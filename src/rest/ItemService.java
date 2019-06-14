@@ -3,7 +3,6 @@ package rest;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
-import com.sun.xml.internal.bind.v2.TODO;
 import dto.Item;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -17,14 +16,14 @@ import java.util.List;
 public class ItemService {
 
     private List<Item> itemList = new ArrayList<>();
-    private static List<String> categorys = new ArrayList<>();
+    private static List<String> categories = new ArrayList<>();
 
     static {
-        categorys.add("10 - IT");
-        categorys.add("11 - Kørsel");
-        categorys.add("12 - Cafeteriet");
-        categorys.add("13 - Frønsegoder");
-        categorys.add("14 - Kontor");
+        categories.add("10 - IT");
+        categories.add("11 - Kørsel");
+        categories.add("12 - Cafeteriet");
+        categories.add("13 - Frynsegoder");
+        categories.add("14 - Kontor");
     }
 
     @POST
@@ -39,7 +38,7 @@ public class ItemService {
 
     @GET
     public JSONArray categoryArray() {
-        return new JSONArray(categorys);
+        return new JSONArray(categories);
     }
 
     // TODO: 13-06-2019 gør det samme for købers navn
@@ -51,10 +50,12 @@ public class ItemService {
         //take the string out of our JSON object
         //here: json-key=testAddCategory and
         //json-value=value of the text field
-        String cat = catObject.getString("testAddCategory");
-        this.categorys.add(cat);
-        System.out.println("added: " + cat);
-        for(String s: categorys) {
+        int catNum = catObject.getInt("categoryNumber");
+        String catText = catObject.getString("categoryText");
+        String catString = catNum + " - " + catText;
+        this.categories.add(catString);
+        System.out.println("added: " + catString);
+        for(String s: categories) {
             System.out.println(s);
         }
     }

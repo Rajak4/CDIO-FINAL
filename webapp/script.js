@@ -27,18 +27,20 @@ function makeDropdown() {
 }
 
 function addCategory() {
-    var category = document.getElementById("testAddCategory").value;
+    var catText = document.getElementById("categoryText").value;
+    var catNum = document.getElementById("categoryNumber").value;
+    var catString = catNum + " - " + catText;
     var dropdown = document.getElementById("category");
     var opt = document.createElement("option");
-    items.push(category);
-    console.log("cat: " + category + " itemslength: " + items.length);
-    opt.text = category;
-    opt.value = category;
+    items.push(catString);
+    console.log("cat: " + catString + " itemslength: " + items.length);
+    opt.text = catString;
+    opt.value = catString;
     dropdown.add(opt);
-    alert("Du tilføjede kategorien: " + category);
+    alert("Du tilføjede kategorien: " + catString);
 
     event.preventDefault();
-    var data = $('#testAddCategory').serializeJSON();
+    var data = $('#catForm').serializeJSON();
     console.log("send to java: " + data);
     $.ajax({
         url: 'rest/item/add/',
@@ -48,5 +50,6 @@ function addCategory() {
     });
 
     //clear input field
-    document.getElementById("testAddCategory").value = "";
+    document.getElementById("categoryNumber").value = "";
+    document.getElementById("categoryText").value = "";
 }
