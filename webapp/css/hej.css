@@ -1,0 +1,153 @@
+.form-regnskab
+{
+    /* safari support */
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    -webkit-border-radius: 10px;
+
+    /*firefox support*/
+    -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    -moz-border-radius: 10px;
+
+
+    width: 500px;
+    padding: 20px;
+    margin: 40px auto;
+    background: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+}
+.form-title
+{
+    text-align: center;
+}
+
+.form-regnskab h1
+{
+    /* safari support */
+    -webkit-box-shadow: inset 0 2px 2px 0 rgba(255, 255, 255, 0.2);
+    -webkit-border-radius: 10px 10px 0 0;
+
+    /*firefox support*/
+    -moz-box-shadow: inset 0 2px 2px 0 rgba(255, 255, 255, 0.2);
+    -moz-border-radius: 10px 10px 0 0;
+
+
+    background: #4587f4;
+    padding: 20px 20px 30px 20px;
+    margin: -20px -20px 20px -20px;
+    border-radius: 10px 10px 0 0;
+    color: #ffffff;
+    box-shadow: inset 0 2px 2px 0 rgba(255, 255, 255, 0.2);
+    border: 1px solid #257C9E;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.form-regnskab .section
+{
+    font: bold 25px 'Ubuntu', sans-serif;
+    color: #4587f4;
+    margin-bottom: 5px;
+    margin-left: 4px;
+}
+
+.form-regnskab .section-inside
+{
+    margin-left: 4px;
+}
+
+.form-regnskab .section span
+{
+    /*firefox support*/
+    -moz-border-radius: 60%;
+
+    /*Safari support*/
+    -webkit-border-radius: 60%;
+
+    background: #4587f4;
+    padding: 5px 10px 5px 10px;
+    position: absolute;
+    border-radius: 60%;
+    font-size: 16px;
+    margin-left: -38px;
+    color: #FFFFFF;
+    margin-top: 1px;
+    box-shadow: -1px -1px 3px rgba(0, 0, 0, 0.2), -1px 1px 2px rgba(0, 0, 0, 0.2);
+
+}
+
+.form-regnskab label
+{
+    display: block;
+    font: 16px Arial, Helvetica, sans-serif;
+    color: #0a0a0a;
+    margin-bottom: 15px;
+}
+
+.form-regnskab input[type="text"],
+.form-regnskab input[type="date"],
+.form-regnskab input[type="number"],
+.form-regnskab textarea,
+.form-regnskab select
+{
+    /*Firefox support*/
+    -moz-border-radius: 5px;
+    -moz-box-sizing: border-box;
+
+    /*Safari support*/
+    -webkit-border-radius: 5px;
+    -webkit-box-sizing: border-box;
+
+
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    border-radius: 20px;
+    border: 2px solid #FFFFFF;
+    box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.2), inset -1px -1px 1px rgba(0, 0, 0, 0.2);
+
+}
+
+.form-regnskab input[type="submit"]
+{
+    /*Firefox support*/
+    -moz-border-radius: 5px;
+    -moz-box-shadow: inset 0 2px 2px 0 rgba(255, 255, 255, 0.3);
+
+    /*Safari support*/
+    -webkit-box-shadow: inset 0 2px 2px 0 rgba(255, 255, 255, 0.3);
+    -webkit-border-radius: 5px;
+
+
+    background: #4587f4;
+    padding: 8px 20px 8px 20px;
+    border-radius: 5px;
+    color: #FFFFFF;
+    font: normal 30px 'bitter', serif;
+    box-shadow: inset 0 2px 2px 0 rgba(255, 255, 255, 0.3);
+    border: 1px solid #257C9E;
+    font-size: 15px;
+}
+
+.form-regnskab input[type="submit"]:hover
+{
+    /*Firefox support*/
+    -moz-box-shadow: inset 0 2px 2px 0 rgba(255, 255, 255, 0.3);
+
+    /*Safari support*/
+    -webkit-box-shadow: inset 0 2px 2px 0 rgba(255, 255, 255, 0.3);
+
+
+    background: #4562f4;
+    cursor: pointer;
+    box-shadow: inset 0 2px 2px 0 rgba(255, 255, 255, 0.3);
+
+}
+
+.twoColumns label
+{
+    display: inline-block;
+    width: 48%;
+}
+

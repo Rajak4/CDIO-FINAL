@@ -10,8 +10,11 @@
     <script type="text/javascript" src="script.js"></script>
     <script src="jquery.serialize-object.js"></script>
 
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="css/bulma.min.css">
+
+    <!--<link rel="stylesheet" type="text/css" href="css/bulma.min.css">-->
+    <link rel="stylesheet" type="text/css" href="css/hej.css">
     <!--CSS for autocomplete dropdown box-->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
     <link rel="shortcut icon" href="img/logo_blue.png">
@@ -53,62 +56,56 @@
             });
         };
 
-
     </script>
 </head>
 
 <body>
-<h1 class="title is-2 has-text-centered">Regnskabshjælper</h1>
 
-<!--test of dropdown box from array-->
-<select id="mySelect">
-</select>
+    <div class="form-regnskab">
+        <div class="form-title">
+            <h1><img src="img/logo_white.png" style="height: 45px; position: absolute; float: left; margin-top: 8px; margin-left: -35px;">egnskabshjælper</h1>
+        </div>
 
-<div class="columns is-mobile is-centered">
-    <div class="column is-half">
+        <form onsubmit="getItem()" id="itemForm">
 
-        <form onsubmit="getItem()" id="itemForm"> <!--action="" method="post" target="_self"-->
+            <div class="section"><span>1</span>Produkt information</div>
+            <div class="section-inside">
+                <label for="category" class="label">Kategori:
+                    <input id="category" type="text" maxlength="45" placeholder="Jubilæumsgaver" name="category" required />
+                </label>
+                <label for="category" class="label">Produkt navn:
+                    <input id="productName" type="text" class="input" name="productName" required>
+                </label>
 
-            <div class="">
-                <label for="category" class="label">Kategori: </label>
-                <input id="category" type="text" maxlength="45" class="input is-rounded" placeholder="Jubilæumsgaver" name="category" required> <br><br>
-            </div>
-
-            <div class="">
-                <label for="productName" class="label">Produkt navn: </label>
-                <input id="productName" type="text" class="input is-rounded" name="productName" required> <br><br>
-            </div>
-
-            <div class="columns is-mobile">
-                <div class="column is-three-quarters">
-                    <label for="price" class="label">Pris (excl. moms): </label>
-                    <input id="price" type="number" class="input is-rounded" name="price" required>
+                <div class="twoColumns">
+                    <label for="price" class="label">Pris (excl. moms):
+                        <input id="price" type="number" name="price" required>
+                    </label>
+                    <label for="amount" class="label" style="float: right">Antal:
+                        <input id="amount" type="number" name="amount" required>
+                    </label>
                 </div>
-
-                <div class="column">
-                    <label for="amount" class="label">Antal:</label>
-                    <input id="amount" type="number" class="input is-rounded" name="amount" required>
+                <div>
+                    <label for="dateOfPurchase" class="label">Dato for køb:
+                        <input id="dateOfPurchase" type="date" name="dateOfPurchase" required>
+                    </label>
                 </div>
             </div>
 
-            <div>
-                <label for="dateOfPurchase" class="label">Dato for køb: </label>
-                <input id="dateOfPurchase" type="date" class="input is-rounded" name="dateOfPurchase" required> <br><br>
+
+            <div class="section"><span>2</span>Købers information</div>
+            <div class="section-inside">
+                <label for="buyersName" class="label">Købers navn:
+                    <input id="buyersName" type="text" name="buyersName" required>
+                </label>
+
+                <label for="comment" class="label">Kommentar:
+                    <textarea id="comment" name="comment" class="textarea" placeholder="Købt grundet..." required></textarea>
+                </label>
             </div>
 
-            <div>
-                <label for="buyersName" class="label">Købers navn: </label>
-                <input id="buyersName" type="text" class="input is-rounded" name="buyersName" required> <br><br>
-            </div>
-
-                <label for="comment" class="label">Kommentar: </label>
-                <textarea id="comment" name="comment" class="textarea" placeholder="Købt grundet..." required></textarea> <br>
-
-            <input type="submit" class="button" id="button" value="Indsend">
+            <input type="submit" value="Indsend">
         </form>
     </div>
-
-</div>
-
 </body>
 </html>
