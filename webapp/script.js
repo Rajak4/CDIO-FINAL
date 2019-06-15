@@ -1,10 +1,101 @@
 //should add <option> tags with values from the array.
 //This way there can only be searched in those specific words.
-var items = ["hej", "med", "dig", "4", "5"];
-$.each(items, function (i, item) {
-    console.log(i + " : " + item);
-    $('#mySelect').append($('<option>', {
-        value: item.value,
-        text : item.text
-    }));
-});
+
+//global array. This way we can create other functions
+//and still use this "items" array.
+var items = [];
+//value that our numbers start at
+var catStartVal = 10;
+
+//function is executed right after the website is loaded.
+function loadFromServer() {
+    $.getJSON("rest/item/getCategory/", function (data) {
+        $.each(data, function (key, val) {
+            //adding values to the global array
+            items.push(val);
+        });
+        makeDropdown(items);
+    });
+}
+
+function makeDropdown(data) {
+    //getting jsonArray from server at "rest/item" as a GET.
+    var dropdown = document.getElementById("category");
+    console.log(data);
+    //we loop over the data in jsonArray.
+    $.each(data, function (key, val) {
+        var catString = ((catStartVal + key) + " - " + val);
+        console.log(key + " : " + val + " nr: " + (catStartVal+key));
+        //creating our dropdown list of the data in the array
+        var opt = document.createElement("option");
+        opt.text = catString;
+        opt.value = catString;
+        dropdown.add(opt);
+        console.log("arraylength: " + items.length);
+    })
+}
+
+function addCategory() {
+    var categoryName = prompt("Hvad skal kategorien være?", "");
+    if(categoryName == null || categoryName == "") {
+        //do nothing when cancel.
+    } else {
+        //get elements of the select aka. dropdown
+        var dropdown = document.getElementById("category");
+        var opt = document.createElement("option");
+
+        //creating a string that looks like "'num' - 'name'" fx "10 - IT".
+        var catString = (catStartVal + items.length) + " - " + categoryName;
+        items.push(catString);
+        console.log("cat: " + catString + " itemslength: " + items.length);
+        opt.text = catString;
+        opt.value = catString;
+        dropdown.add(opt);
+        alert("Du tilføjede kategorien: \"" + categoryName + "\" med nummer: " + (catStartVal + items.length-1));
+
+        event.preventDefault();
+        //creating a javascript object that we then make a JSON string
+        //We only give the name to the server. Number adding is only in JS
+        var obj = {
+            "category" : categoryName
+        };
+        var data = JSON.stringify(obj);
+        console.log("send to java: " + data);
+        $.ajax({
+            url: 'rest/item/add/',
+            method: 'POST',
+            contentType: 'application/json',
+            data: data
+        });
+    }
+}
+
+function deleteCategory() {
+    var numToDel = prompt("Nummer på kategori, der skal slettes?", "");
+    if(numToDel == null || numToDel == "") {
+        //do nothing when cancel.
+    } else {
+        //save the position and name of the element we are deleting
+        var posToDel = numToDel - catStartVal;
+        var catToDel = items[posToDel];
+        //delete 1 element starting at "posToDel"
+        items.splice(posToDel, 1);
+        console.log(items);
+
+        //sending the position of the element we are deleting
+        //as JSON to Java so we can delete from java arraylist as well
+        event.preventDefault();
+        var obj = {"numToDel" : posToDel};
+        var data = JSON.stringify(obj);
+        console.log("hej=" +data);
+        $.ajax({
+            url: 'rest/item/delete/',
+            method: 'POST',
+            contentType: 'application/json',
+            data: data
+        });
+        //write to user. After we reload the page (update the select/dropdown)
+        alert("Du slettede kategorien: " + catToDel);
+        window.location.reload();
+    }
+}

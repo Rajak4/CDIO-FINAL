@@ -5,61 +5,26 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <!--used for search in dropdown-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+    <!--<script src="select2/dist/js/select2.min.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+
     <script type="text/javascript" src="script.js"></script>
     <script src="jquery.serialize-object.js"></script>
 
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
-
-
-    <!--<link rel="stylesheet" type="text/css" href="css/bulma.min.css">-->
-    <link rel="stylesheet" type="text/css" href="css/hej.css">
+    <!--css for dropdown-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/bulma.min.css">
     <!--CSS for autocomplete dropdown box-->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
     <link rel="shortcut icon" href="img/logo_blue.png">
+    <link rel="stylesheet" type="text/css" href="css/hej.css">
 
     <meta charset="UTF-8">
     <title>Regnskabshjælper</title>
-
-    <script>
-        //suggestion by list in input=category
-        var categories = ["c++", "java", "php", "coldfusion", "javascript", "asp", "ruby"];
-        $(function () {
-            $("#category").autocomplete({
-                source: categories,
-                minLenght: 0,
-                autoFocus: true
-            }).focus(function () {
-                $(this).autocomplete("Search", "");
-            })
-        });
-
-        //sends json object to url="rest/item" when clicked on the button.
-        //this is for the server to "catch" it from that url.
-        function getItem() {
-            if(!jQuery.inArray($('#category'), categories)) {
-                //to check if the search word is in the array
-            }
-            console.log("true");
-            event.preventDefault();
-            var data = $('#itemForm').serializeJSON();
-            alert(JSON.stringify(data));
-            console.log(data);
-            $.ajax({
-                url: 'rest/item/',
-                method: 'POST',
-                contentType: "application/json",
-                data: data,
-                success: function (data) {
-                }
-            });
-        };
-
-    </script>
 </head>
 
-<body>
+<body onload="loadFromServer()">
 
     <div class="form-regnskab">
         <div class="form-title">
@@ -70,10 +35,14 @@
 
             <div class="section"><span>1</span>Produkt information</div>
             <div class="section-inside">
-                <label for="category" class="label">Kategori:
-                    <input id="category" type="text" maxlength="45" placeholder="Jubilæumsgaver" name="category" required />
-                </label>
-                <label for="category" class="label">Produkt navn:
+
+                <!--man kan ikke søge, hvis selecten er INDE i label, men det virker, når den er sådan her-->
+                <label for="category" class="label">Kategori:</label>
+                <select name="category" id="category" required style="width: 100%;"></select>
+                <button onclick="addCategory()">Tilføj kategori</button>
+                <button onclick="deleteCategory()">Slet kategori</button>
+
+                <label for="productName" class="label">Produkt navn:
                     <input id="productName" type="text" class="input" name="productName" required>
                 </label>
 
@@ -108,4 +77,25 @@
         </form>
     </div>
 </body>
+
+    <script>
+        //sends json object to url="rest/item" when clicked on the button.
+        //this is for the server to "catch" it from that url.
+        function getItem() {
+            event.preventDefault();
+            var data = $('#itemForm').serializeJSON();
+            console.log(data);
+            $.ajax({
+                url: 'rest/item/',
+                method: 'POST',
+                contentType: "application/json",
+                data: data,
+                success: function (data) {
+                }
+            });
+        };
+
+        //this is the searchbar in the dropdown
+        $('#category').select2({});
+    </script>
 </html>
