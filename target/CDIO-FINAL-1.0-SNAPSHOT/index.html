@@ -38,10 +38,6 @@
 
             <label for="category" class="label" style="width: 100%">Kategori:</label>
             <select name="category" id="category" required style="width: 100%;"></select>
-            <!--<div class="">-->
-                <!--<label for="category" class="label">Kategori: </label>-->
-                <!--<input id="category" type="text" maxlength="45" class="input is-rounded" placeholder="Jubilæumsgaver" name="category" required> <br><br>-->
-            <!--</div>-->
 
             <div class="">
                 <label for="productName" class="label">Produkt navn: </label>
@@ -75,8 +71,14 @@
 
             <input type="submit" class="button" id="button" value="Indsend">
 
-            <input type="text" id="testAddCategory" name="testAddCategory">
-            <input type="submit" id="testbtn" value="test" onclick="addCategory()">
+        </form>
+    </div>
+
+    <div>
+        <form id="catForm" onsubmit="addCategory()">
+            <input type="number" id="categoryNumber" name="categoryNumber" required min="1">
+            <input type="text" id="categoryText" name="categoryText" required>
+            <input type="submit" id="testbtn" value="test">
         </form>
     </div>
 

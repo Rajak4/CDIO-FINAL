@@ -76,8 +76,8 @@
 
     <div>
         <form id="catForm" onsubmit="addCategory()">
-            <input type="number" id="categoryNumber" name="categoryNumber">
-            <input type="text" id="categoryText" name="categoryText">
+            <input type="number" id="categoryNumber" name="categoryNumber" required min="1">
+            <input type="text" id="categoryText" name="categoryText" required>
             <input type="submit" id="testbtn" value="test">
         </form>
     </div>
@@ -87,18 +87,6 @@
 </body>
 
     <script>
-        //suggestion by list in input=category
-         var categories = ["c++", "java", "php", "coldfusion", "javascript", "asp", "ruby"];
-        // $(function () {
-        //     $("#category").autocomplete({
-        //         source: categories,
-        //         minLenght: 0,
-        //         autoFocus: false
-        //     }).focus(function () {
-        //         $(this).autocomplete("Search", "");
-        //     })
-        // });
-
         //sends json object to url="rest/item" when clicked on the button.
         //this is for the server to "catch" it from that url.
         function getItem() {
@@ -115,6 +103,7 @@
             });
         };
 
+        //this is the searchbar in the dropdown
         $('#category').select2({
 
         });
