@@ -15,7 +15,7 @@ import java.util.List;
 @Produces(MediaType.APPLICATION_JSON)
 public class ItemService {
 
-    private List<Item> itemList = new ArrayList<>();
+    public Item item = new Item();
     private static List<String> categories = new ArrayList<>();
     private static List<String> buyerNames = new ArrayList<>();
 
@@ -50,16 +50,26 @@ public class ItemService {
     @POST
     public void getItem(String body) {
         JSONObject jsonObject = new JSONObject(body);
+        //removes every before, and also the string itself " - ".
+        //fx "10 - IT" becomes "IT". "10 - " is removed.
+        String category = (jsonObject.getString("category")).replaceAll(".* - ", "");
+        String buyersName = (jsonObject.getString("buyersName")).replaceAll(".* - ", "");
 
-        Item item = new Item(jsonObject.getString("category"));
-        itemList.add(item);
+        //creating an item and adding it to the array
+        Item item = new Item(
+                category,
+                jsonObject.getString("productName"),
+                jsonObject.getDouble("price"),
+                jsonObject.getInt("amount"),
+                jsonObject.getString("dateOfPurchase"),
+                buyersName,
+                jsonObject.getString("comment")
+        );
+        item.addItem(item);
 
-        System.out.println("date is: " + jsonObject.getString("dateOfPurchase"));
-        /*
-        for(Item item1 : itemList) {
+        for(Item item1 : item.getItemList()) {
             System.out.println(item1);
         }
-        */
     }
 
     @Path("getCategory")
@@ -108,7 +118,7 @@ public class ItemService {
     public void deleteCategory(String data) {
         JSONObject obj = new JSONObject(data);
         int numToDel = obj.getInt("numToDel");
-        categories.remove(numToDel);
+        removeCategoryFromArray(numToDel);
         for(String s: categories) {
             System.out.println("del: "+s);
         }
