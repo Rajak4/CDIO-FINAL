@@ -43,15 +43,15 @@
                 <button onclick="deleteCategory()" style="background-color: #ff0537">Slet kategori</button>
 
                 <label for="productName" class="label">Produkt navn:
-                    <input id="productName" type="text" placeholder="Porsche 911 Carrera 4S, 3.8 Coup+e 2d" class="input" name="productName" required>
+                    <input id="productName" type="text" placeholder="Porsche 911 Carrera 4S, 3.8 Coup+e 2d" class="input" maxlength="45" name="productName" required>
                 </label>
 
                 <div class="twoColumns">
                     <label for="price" class="label">Pris (excl. moms):
-                        <input id="price" type="number" placeholder="499.999" name="price" required>
+                        <input id="price" type="number" placeholder="499.999" min="1" name="price" required>
                     </label>
                     <label for="amount" class="label" style="float: right">Antal:
-                        <input id="amount" type="number" value="1" placeholder="1" name="amount" required>
+                        <input id="amount" type="number" min="1" value="1" placeholder="1" name="amount" required>
                     </label>
                 </div>
                 <div>
