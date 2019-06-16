@@ -17,13 +17,34 @@ public class ItemService {
 
     private List<Item> itemList = new ArrayList<>();
     private static List<String> categories = new ArrayList<>();
+    private static List<String> buyerNames = new ArrayList<>();
 
+    //This runs every time the server starts
     static {
         categories.add("IT");
         categories.add("Kørsel");
         categories.add("Cafeteriet");
         categories.add("Frynsegoder");
         categories.add("Kontor");
+
+        buyerNames.add("Andreas Nøhr");
+        buyerNames.add("Rasmus Jakobsen");
+        buyerNames.add("Martin Rylund");
+        buyerNames.add("Athusan Kugathasan");
+        buyerNames.add("Patrick Hansen");
+    }
+
+    public void addNameToArray(String name) {
+        buyerNames.add(name);
+    }
+    public void addCategoryToArray(String category) {
+        categories.add(category);
+    }
+    public void removeNameFromArray(int posToDel) {
+        buyerNames.remove(posToDel);
+    }
+    public void removeCategoryFromArray(int posToDel) {
+        categories.remove(posToDel);
     }
 
     @POST
@@ -47,8 +68,13 @@ public class ItemService {
         return new JSONArray(categories);
     }
 
-    // TODO: 13-06-2019 gør det samme for købers navn
-    @Path("add")
+    @Path("getBuyerNames")
+    @GET
+    public JSONArray buyerNamesArray() {
+        return new JSONArray(buyerNames);
+    }
+
+    @Path("addCategory")
     @POST
     public void addCategory(String category) {
         //creating JSON object of the string we get
@@ -57,14 +83,27 @@ public class ItemService {
         //here: json-key=testAddCategory and
         //json-value=value of the text field
         String catString = catObject.getString("category");
-        this.categories.add(catString);
+        addCategoryToArray(catString);
         System.out.println("added: " + catString);
         for(String s: categories) {
             System.out.println("add: "+s);
         }
     }
 
-    @Path("delete")
+    @Path("addBuyersName")
+    @POST
+    public void addBuyersName(String buyersName) {
+        //creating JSON object of the string we get
+        JSONObject nameObj = new JSONObject(buyersName);
+        String name = nameObj.getString("buyersName");
+        addNameToArray(name);
+        System.out.println("name add: " + name);
+        for(String s: buyerNames) {
+            System.out.println("name: " + s);
+        }
+    }
+
+    @Path("deleteCategory")
     @POST
     public void deleteCategory(String data) {
         JSONObject obj = new JSONObject(data);
@@ -73,6 +112,14 @@ public class ItemService {
         for(String s: categories) {
             System.out.println("del: "+s);
         }
+    }
+
+    @Path("deleteName")
+    @POST
+    public void deleteName(String data) {
+        JSONObject obj = new JSONObject(data);
+        int numToDel = obj.getInt("numToDel");
+        removeNameFromArray(numToDel);
     }
 
 }

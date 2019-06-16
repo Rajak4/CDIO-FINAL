@@ -5,61 +5,26 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <!--used for search in dropdown-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+    <!--<script src="select2/dist/js/select2.min.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+
     <script type="text/javascript" src="script.js"></script>
     <script src="jquery.serialize-object.js"></script>
 
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
-
-
-    <!--<link rel="stylesheet" type="text/css" href="css/bulma.min.css">-->
-    <link rel="stylesheet" type="text/css" href="css/hej.css">
+    <!--css for dropdown-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/bulma.min.css">
     <!--CSS for autocomplete dropdown box-->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
     <link rel="shortcut icon" href="img/logo_blue.png">
+    <link rel="stylesheet" type="text/css" href="css/hej.css">
 
     <meta charset="UTF-8">
     <title>Regnskabshjælper</title>
-
-    <script>
-        //suggestion by list in input=category
-        var categories = ["c++", "java", "php", "coldfusion", "javascript", "asp", "ruby"];
-        $(function () {
-            $("#category").autocomplete({
-                source: categories,
-                minLenght: 0,
-                autoFocus: true
-            }).focus(function () {
-                $(this).autocomplete("Search", "");
-            })
-        });
-
-        //sends json object to url="rest/item" when clicked on the button.
-        //this is for the server to "catch" it from that url.
-        function getItem() {
-            if(!jQuery.inArray($('#category'), categories)) {
-                //to check if the search word is in the array
-            }
-            console.log("true");
-            event.preventDefault();
-            var data = $('#itemForm').serializeJSON();
-            alert(JSON.stringify(data));
-            console.log(data);
-            $.ajax({
-                url: 'rest/item/',
-                method: 'POST',
-                contentType: "application/json",
-                data: data,
-                success: function (data) {
-                }
-            });
-        };
-
-    </script>
 </head>
 
-<body>
+<body onload="loadFromServer()">
 
     <div class="form-regnskab">
         <div class="form-title">
@@ -70,19 +35,23 @@
 
             <div class="section"><span>1</span>Produkt information</div>
             <div class="section-inside">
-                <label for="category" class="label">Kategori:
-                    <input id="category" type="text" maxlength="45" placeholder="Jubilæumsgaver" name="category" required />
-                </label>
-                <label for="category" class="label">Produkt navn:
-                    <input id="productName" type="text" class="input" name="productName" required>
+
+                <!--man kan ikke søge, hvis selecten er INDE i label, men det virker, når den er sådan her-->
+                <label for="category" class="label">Kategori:</label>
+                <select name="category" id="category" required style="width: 100%;"></select>
+                <button onclick="addCategory()" style="background-color: #23d160">Tilføj kategori</button>
+                <button onclick="deleteCategory()" style="background-color: #ff0537">Slet kategori</button>
+
+                <label for="productName" class="label">Produkt navn:
+                    <input id="productName" type="text" placeholder="Porsche 911 Carrera 4S, 3.8 Coupé 2d" class="input" maxlength="45" name="productName" required>
                 </label>
 
                 <div class="twoColumns">
-                    <label for="price" class="label">Pris (excl. moms):
-                        <input id="price" type="number" name="price" required>
+                    <label for="price" class="label">Pris i kr. (excl. moms):
+                        <input id="price" type="number" placeholder="499.999" min="1" name="price" required>
                     </label>
                     <label for="amount" class="label" style="float: right">Antal:
-                        <input id="amount" type="number" name="amount" required>
+                        <input id="amount" type="number" min="1" value="1" placeholder="1" name="amount" required>
                     </label>
                 </div>
                 <div>
@@ -95,12 +64,16 @@
 
             <div class="section"><span>2</span>Købers information</div>
             <div class="section-inside">
-                <label for="buyersName" class="label">Købers navn:
-                    <input id="buyersName" type="text" name="buyersName" required>
-                </label>
+                <!--<label for="buyersName" class="label">Købers navn:-->
+                    <!--<input id="buyersName" type="text" maxlength="45" placeholder="Mogens Pedersen" name="buyersName" required>-->
+                <!--</label>-->
+                <label for="buyersName" class="label">Købers navn:</label>
+                <select name="buyersName" id="buyersName" required style="width: 100%;"></select>
+                <button onclick="addBuyer()" style="background-color: #23d160">Tilføj køber</button>
+                <button onclick="deleteBuyer()" style="background-color: #ff0537">Slet køber</button>
 
                 <label for="comment" class="label">Kommentar:
-                    <textarea id="comment" name="comment" class="textarea" placeholder="Købt grundet..." required></textarea>
+                    <textarea id="comment" name="comment" maxlength="105" class="textarea" placeholder="Købt grundet..." required></textarea>
                 </label>
             </div>
 
@@ -108,4 +81,26 @@
         </form>
     </div>
 </body>
+
+    <script>
+        //sends json object to url="rest/item" when clicked on the button.
+        //this is for the server to "catch" it from that url.
+        function getItem() {
+            event.preventDefault();
+            var data = $('#itemForm').serializeJSON();
+            console.log(data);
+            $.ajax({
+                url: 'rest/item/',
+                method: 'POST',
+                contentType: "application/json",
+                data: data,
+                success: function (data) {
+                }
+            });
+        };
+
+        //this is the searchbar in the dropdown
+        $('#category').select2();
+        $('#buyersName').select2();
+    </script>
 </html>

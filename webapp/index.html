@@ -64,9 +64,13 @@
 
             <div class="section"><span>2</span>Købers information</div>
             <div class="section-inside">
-                <label for="buyersName" class="label">Købers navn:
-                    <input id="buyersName" type="text" maxlength="45" placeholder="Mogens Pedersen" name="buyersName" required>
-                </label>
+                <!--<label for="buyersName" class="label">Købers navn:-->
+                    <!--<input id="buyersName" type="text" maxlength="45" placeholder="Mogens Pedersen" name="buyersName" required>-->
+                <!--</label>-->
+                <label for="buyersName" class="label">Købers navn:</label>
+                <select name="buyersName" id="buyersName" required style="width: 100%;"></select>
+                <button onclick="addBuyer()" style="background-color: #23d160">Tilføj køber</button>
+                <button onclick="deleteBuyer()" style="background-color: #ff0537">Slet køber</button>
 
                 <label for="comment" class="label">Kommentar:
                     <textarea id="comment" name="comment" maxlength="105" class="textarea" placeholder="Købt grundet..." required></textarea>
@@ -96,6 +100,7 @@
         };
 
         //this is the searchbar in the dropdown
-        $('#category').select2({});
+        $('#category').select2();
+        $('#buyersName').select2();
     </script>
 </html>
