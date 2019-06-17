@@ -40,7 +40,7 @@
     color: #ffffff;
     box-shadow: inset 0 2px 2px 0 rgba(255, 255, 255, 0.2);
     border: 1px solid #257C9E;
-    font-family: 'Ubuntu', sans-serif;
+    font: bold 36px 'Ubuntu', sans-serif;
 }
 
 .form-regnskab .section
@@ -100,6 +100,7 @@
     -webkit-box-sizing: border-box;
 
 
+    margin-top: 5px;
     display: block;
     box-sizing: border-box;
     width: 100%;
@@ -129,6 +130,7 @@
     box-shadow: inset 0 2px 2px 0 rgba(255, 255, 255, 0.3);
     border: 1px solid #257C9E;
     font-size: 15px;
+    margin-top: 10px;
 }
 
 .form-regnskab input[type="submit"]:hover
