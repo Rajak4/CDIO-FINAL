@@ -8,6 +8,20 @@ var nameArray = [];
 //value that our numbers start at
 var catStartVal = 10;
 
+//sends json object to url="rest/item" when clicked on the button.
+//this is for the server to "catch" it from that url.
+function sendItemToServer() {
+    event.preventDefault();
+    var data = $('#itemForm').serializeJSON();
+    console.log(data);
+    $.ajax({
+        url: 'rest/item/',
+        method: 'POST',
+        contentType: "application/json",
+        data: data
+    });
+};
+
 //function is executed right after the website is loaded.
 function loadFromServer() {
     $.getJSON("rest/item/getCategory/", function (data) {

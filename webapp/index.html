@@ -31,7 +31,7 @@
             <h1><img src="img/logo_white.png" style="height: 45px; position: absolute; float: left; margin-top: -2px; margin-left: -35px;">egnskabshjælper</h1>
         </div>
 
-        <form onsubmit="getItem()" id="itemForm">
+        <form onsubmit="sendItemToServer()" id="itemForm">
 
             <div class="section"><span>1</span>Produkt information</div>
             <div class="section-inside">
@@ -83,20 +83,6 @@
 </body>
 
     <script>
-        //sends json object to url="rest/item" when clicked on the button.
-        //this is for the server to "catch" it from that url.
-        function getItem() {
-            event.preventDefault();
-            var data = $('#itemForm').serializeJSON();
-            console.log(data);
-            $.ajax({
-                url: 'rest/item/',
-                method: 'POST',
-                contentType: "application/json",
-                data: data
-            });
-        };
-
         //this is the searchbar in the dropdown
         $('#category').select2();
         $('#buyersName').select2();
