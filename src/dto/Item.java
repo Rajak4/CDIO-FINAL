@@ -61,6 +61,28 @@ public class Item {
         return itemsToReturn;
     }
 
+    //returns a list of items bought in a give day
+    public List<Item> getItemDataRange(String date) {
+        List<Item> itemsToReturn = new ArrayList<>();
+        for(Item item: itemList) {
+            if(item.getDateOfPurchase().equals(date)) {
+                itemsToReturn.add(item);
+            }
+        }
+        return itemsToReturn;
+    }
+
+    // TODO: 17-06-2019 list mellem to datoer.
+
+    //returns the total price for a given list
+    public double getPriceByList(List<Item> items) {
+        double price = 0;
+        for(Item item: items) {
+            price += item.getPrice();
+        }
+        return price;
+    }
+
 
     //getters and setters
     public void setCategory(String category) {
