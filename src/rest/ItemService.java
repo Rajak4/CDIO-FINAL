@@ -100,6 +100,23 @@ public class ItemService {
         }
     }
 
+    // FIXME: 17-06-2019 giver HTTP error 500 (inter server fejl)
+    @Path("getShowData")
+    @POST
+    public JSONArray getShowData(String data) {
+        JSONObject obj = new JSONObject(data);
+        String category = obj.getString("categorySearch");
+        String buyersName = obj.getString("buyersNameSearch");
+
+        System.out.println("hrello " + category);
+        List<Item> list = item.getItemsByCategory(category);
+        for(Item item: list) {
+            System.out.println(item);
+        }
+        return new JSONArray(list);
+        //return new JSONArray(categories);
+    }
+
     @Path("addBuyersName")
     @POST
     public void addBuyersName(String buyersName) {

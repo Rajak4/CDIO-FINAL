@@ -29,7 +29,14 @@ public class Item {
     }
 
     //item list
-    private List<Item> itemList = new ArrayList<>();
+    private static List<Item> itemList = new ArrayList<>();
+
+    static {
+        itemList.add(new Item("IT", "MacBook Pro", 10900, 1, "2019-02-22", "Patrick Hansen", "Købt for sjov."));
+        itemList.add(new Item("IT", "Huawei Matebook", 8899, 2, "2019-04-05", "Athusan Kugathasan", "Computer til kontor."));
+        itemList.add(new Item("IT", "8k projektor", 12000, 1, "2019-04-26", "Athusan Kugathasan", "Projektor til møder."));
+        itemList.add(new Item("Kørsel", "Lambo", 120000.5, 1, "2019-10-02", "Rasmus Jakobsen", "Firma bil."));
+    }
 
     public void addItem(Item item) {
         itemList.add(item);

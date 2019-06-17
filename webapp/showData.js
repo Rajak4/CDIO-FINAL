@@ -51,12 +51,18 @@ function makeNameSearchDropdown(data) {
 //this is for the server to "catch" it from that url.
 function sendItemToServer() {
     event.preventDefault();
-    var data = $('#itemForm').serializeJSON();
+    var data = $('#showDataFrom').serializeJSON();
     console.log(data);
     $.ajax({
-        url: 'rest/item/',
+        url: 'rest/item/getShowData/',
         method: 'POST',
         contentType: "application/json",
-        data: data
+        data: data,
+        success: function (result) {
+            console.log(JSON.stringify(result));
+        },
+        error: function (data) {
+            console.log("fail");
+        }
     });
-};
+}

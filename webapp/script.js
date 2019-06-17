@@ -20,7 +20,7 @@ function sendItemToServer() {
         contentType: "application/json",
         data: data
     });
-};
+}
 
 //function is executed right after the website is loaded.
 function loadFromServer() {
