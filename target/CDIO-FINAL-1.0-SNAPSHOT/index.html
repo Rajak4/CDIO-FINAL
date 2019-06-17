@@ -23,28 +23,11 @@
     <title>Regnskabshjælper</title>
 
     <script>
-        //suggestion by list in input=category
-        var categories = ["c++", "java", "php", "coldfusion", "javascript", "asp", "ruby"];
-        $(function () {
-            $("#category").autocomplete({
-                source: categories,
-                minLenght: 0,
-                autoFocus: true
-            }).focus(function () {
-                $(this).autocomplete("Search", "");
-            })
-        });
-
         //sends json object to url="rest/item" when clicked on the button.
         //this is for the server to "catch" it from that url.
         function getItem() {
-            if(!jQuery.inArray($('#category'), categories)) {
-                //to check if the search word is in the array
-            }
-            console.log("true");
             event.preventDefault();
             var data = $('#itemForm').serializeJSON();
-            alert(JSON.stringify(data));
             console.log(data);
             $.ajax({
                 url: 'rest/item/',
@@ -55,6 +38,11 @@
                 }
             });
         };
+
+        //this is the searchbar in the dropdown
+        $('#category').select2({
+
+        });
 
     </script>
 </head>
