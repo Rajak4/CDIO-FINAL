@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <script src="jquery-3.1.1.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <!--<script src="select2/dist/js/select2.min.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+
+    <script type="text/javascript" src="showData.js"></script>
+    <script src="jquery.serialize-object.js"></script>
+
+    <!--css for dropdown-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/bulma.min.css">
+    <!--CSS for autocomplete dropdown box-->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel="shortcut icon" href="img/logo_blue.png">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <meta charset="UTF-8">
+    <title>Regnskabshjælper</title>
+</head>
+
+<body onload="loadFromServerToSearch()">
+
+<div class="form-regnskab">
+    <div class="form-title">
+        <h1><img src="img/logo_white.png" style="height: 45px; position: absolute; float: left; margin-top: 12px; margin-left: -35px;">egnskabshjælper</h1>
+    </div>
+
+    <form onsubmit="sendItemToServer()" id="itemForm">
+
+        <div class="section"><span>1</span>Datafishing</div>
+
+        <div class="section-inside">
+
+            <!--man kan ikke søge, hvis selecten er INDE i label, men det virker, når den er sådan her-->
+            <label for="categorySearch" class="label">Kategori:</label>
+            <select name="categorySearch" id="categorySearch" style="width: 100%;"></select>
+
+            <div class="section-inside">
+                <label for="buyersNameSearch" class="label">Købers navn:</label>
+                <select name="buyersNameSearch" id="buyersNameSearch" style="width: 100%;"></select>
+            </div>
+
+            <div class="twoColumns">
+                <div>
+                    <label for="dateOfPurchaseStart" class="label">Startdato for søgning:
+                        <input id="dateOfPurchaseStart" type="date" name="dateOfPurchaseStart">
+                    </label>
+
+                    <label for="dateOfPurchaseEnd" class="label">Slutdato for søgning:
+                        <input id="dateOfPurchaseEnd" type="date" name="dateOfPurchaseEnd">
+                    </label>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="section"><span>2</span>Vælg data til visning</div>
+
+        <div class="section-inside">
+            <div class="fourColumns" >
+
+                <label>
+                    <input type="checkbox" name="category" checked> Kategori
+                </label>
+
+                <label>
+                    <input type="checkbox" name="productName" checked> Produktnavn
+                </label>
+
+                <label>
+                    <input type="checkbox" name="price" checked> Pris
+                </label>
+
+                <label>
+                    <input type="checkbox" name="amount" checked> Antal
+                </label>
+
+                <label>
+                    <input type="checkbox" name="dateOfPurchase" checked> Dato for køb
+                </label>
+            </div>
+
+        </div>
+
+        <input type="submit" value="Indsend">
+    </form>
+</div>
+</body>
+
+<script>
+    //this is the searchbar in the dropdown
+    $('#categorySearch').select2();
+    $('#buyersNameSearch').select2();
+</script>
+</html>

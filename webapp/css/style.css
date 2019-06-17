@@ -154,3 +154,8 @@
     width: 48%;
 }
 
+.fourColumns label
+{
+    display: inline-block;
+    width: 30%
+}
