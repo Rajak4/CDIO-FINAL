@@ -47,6 +47,7 @@ public class ItemService {
         categories.remove(posToDel);
     }
 
+    @Path("receiveForm")
     @POST
     public void getItem(String body) {
         JSONObject jsonObject = new JSONObject(body);

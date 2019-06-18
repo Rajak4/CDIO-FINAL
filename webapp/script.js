@@ -1,6 +1,3 @@
-//should add <option> tags with values from the array.
-//This way there can only be searched in those specific words.
-
 //global array. This way we can create other functions
 //and still use this "categories" array.
 var categories = [];
@@ -15,7 +12,7 @@ function sendItemToServer() {
     var data = $('#itemForm').serializeJSON();
     console.log(data);
     $.ajax({
-        url: 'rest/item/',
+        url: 'rest/item/receiveForm/',
         method: 'POST',
         contentType: "application/json",
         data: data
