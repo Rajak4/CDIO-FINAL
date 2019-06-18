@@ -31,6 +31,18 @@ async function addUserButton() {
     }
 }
 
+async function addCategoryButton() {
+    const {value: category}  = await swal.fire({
+        input: 'text',
+        inputPlaceholder: 'Indtast en categori',
+        showCancelButton: true
+    });
+
+    if (category) {
+        addCategory(category)
+    }
+}
+
 //function is executed right after the website is loaded.
 function loadFromServer() {
     loadCategories();
@@ -88,43 +100,25 @@ function makeNameDropdown(data) {
     })
 }
 
-function addCategory() {
-    var categoryName = prompt("Hvad skal kategorien være?", "");
-    if(categoryName == null || categoryName == "") {
-        //do nothing when cancel.
-    } else {
-        //get elements of the select aka. dropdown
-        var dropdown = document.getElementById("category");
-        var opt = document.createElement("option");
-
-        //creating a string that looks like "'num' - 'name'" fx "10 - IT".
-        var catString = (catStartVal + categories.length) + " - " + categoryName;
-        categories.push(catString);
-        console.log("cat: " + catString + " itemslength: " + categories.length);
-        opt.text = catString;
-        opt.value = catString;
-
-        alert("Du tilføjede kategorien: \"" + categoryName + "\" med nummer: " + (catStartVal + categories.length-1));
-
-        event.preventDefault();
-        //creating a javascript object that we then make a JSON string
-        //We only give the name to the server. Number adding is only in JS
-        var obj = {
-            "category" : categoryName
-        };
-        var data = JSON.stringify(obj);
-        console.log("send to java: " + data);
-        $.ajax({
-            url: 'rest/item/addCategory/',
-            method: 'POST',
-            contentType: 'application/json',
-            data: data,
-            success: function() {
-                $("#category").empty();
-                loadCategories();
-            }
-        });
-    }
+function addCategory(name) {
+    event.preventDefault();
+    //creating a javascript object that we then make a JSON string
+    //We only give the name to the server. Number adding is only in JS
+    var obj = {
+        "category" : name
+    };
+    var data = JSON.stringify(obj);
+    console.log("send to java: " + data);
+    $.ajax({
+        url: 'rest/item/addCategory/',
+        method: 'POST',
+        contentType: 'application/json',
+        data: data,
+        success: function() {
+            $("#category").empty();
+            loadCategories();
+        }
+    });
 }
 
 function deleteCategory() {
