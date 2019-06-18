@@ -19,8 +19,26 @@ function sendItemToServer() {
     });
 }
 
+async function addUserButton() {
+    const {value: name}  = await swal.fire({
+        input: 'text',
+        inputPlaceholder: 'Indtast et navn',
+        showCancelButton: true
+    });
+
+    if (name) {
+        addBuyer(name)
+    }
+}
+
 //function is executed right after the website is loaded.
 function loadFromServer() {
+    loadCategories();
+    loadBuyers();
+}
+
+function loadCategories() {
+    categories = [];
     $.getJSON("rest/item/getCategory/", function (data) {
         $.each(data, function (key, val) {
             //adding values to the global array
@@ -28,6 +46,12 @@ function loadFromServer() {
         });
         makeCatDropdown(categories);
     });
+
+    console.log(categories);
+}
+
+function loadBuyers(){
+    nameArray =[];
     $.getJSON("rest/item/getBuyerNames/", function (data) {
         $.each(data, function (key, name) {
             console.log(key + ": " + name);
@@ -43,22 +67,20 @@ function makeCatDropdown(data) {
     var dropdown = document.getElementById("category");
     console.log(data);
     //we loop over the data in jsonArray.
-    $.each(data, function (key, val) {
-        var catString = ((catStartVal + key) + " - " + val);
-        console.log(key + " : " + val + " nr: " + (catStartVal+key));
+    $.each(data, function (key, val) {;
+        var catString = (val[0] + " - " + val[1]);
         //creating our dropdown list of the data in the array
         var opt = document.createElement("option");
         opt.text = catString;
         opt.value = catString;
         dropdown.add(opt);
-        console.log("arraylength: " + categories.length);
     })
 }
 
 function makeNameDropdown(data) {
     var dropdown = document.getElementById("buyersName");
     $.each(data, function (key, name) {
-        var nameAndNum = (key + 1) + " - " + name;
+        var nameAndNum = name[1];
         var opt = document.createElement("option");
         opt.text = nameAndNum;
         opt.value = nameAndNum;
@@ -81,7 +103,7 @@ function addCategory() {
         console.log("cat: " + catString + " itemslength: " + categories.length);
         opt.text = catString;
         opt.value = catString;
-        dropdown.add(opt);
+
         alert("Du tilføjede kategorien: \"" + categoryName + "\" med nummer: " + (catStartVal + categories.length-1));
 
         event.preventDefault();
@@ -96,7 +118,11 @@ function addCategory() {
             url: 'rest/item/addCategory/',
             method: 'POST',
             contentType: 'application/json',
-            data: data
+            data: data,
+            success: function() {
+                $("#category").empty();
+                loadCategories();
+            }
         });
     }
 }
@@ -131,28 +157,14 @@ function deleteCategory() {
     }
 }
 
-function addBuyer() {
-    var buyersName = prompt("Købers navn?", "");
-    if(buyersName == null || buyersName == "") {
-        //do nothing when cancel.
-    } else {
+function addBuyer(name) {
         //get elements of the select aka. dropdown
-        var dropdown = document.getElementById("buyersName");
-        var opt = document.createElement("option");
-
-        var nameAndNum = (nameArray.length+1) + " - " + buyersName;
-        nameArray.push(nameAndNum);
-        console.log("køber: " + nameAndNum);
-        opt.text = nameAndNum;
-        opt.value = nameAndNum;
-        dropdown.add(opt);
-        alert("Du tilføjede personen: \"" + buyersName + "\" som køber med nummeret: " + (nameArray.length));
 
         event.preventDefault();
         //creating a javascript object that we then make a JSON string
         //We only give the name to the server. Number adding is only in JS
         var obj = {
-            "buyersName" : buyersName
+            "buyersName" : name
         };
         var data = JSON.stringify(obj);
         console.log("send to java: " + data);
@@ -160,9 +172,12 @@ function addBuyer() {
             url: 'rest/item/addBuyersName/',
             method: 'POST',
             contentType: 'application/json',
-            data: data
+            data: data,
+            success: function() {
+                $("#buyersName").empty();
+                loadBuyers();
+            }
         });
-    }
 }
 
 function deleteBuyer() {

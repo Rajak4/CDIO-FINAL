@@ -3,6 +3,7 @@ package rest;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
+import dal.*;
 import dto.Item;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -15,13 +16,16 @@ import java.util.List;
 @Produces(MediaType.APPLICATION_JSON)
 public class ItemService {
 
-    public Item item = new Item();
-    private static List<String> categories = new ArrayList<>();
-    private static List<String> buyerNames = new ArrayList<>();
+    public Item itemList = new Item();
+    private IItemDAO itemDAO = new ItemDAOImpl();
+    private static ICategoryDAO categoryDAO = new CategoryDAOImpl();
+    private static IUserDAO userDAO = new UserDAOImpl();
+    private static List<String[]> categories = new ArrayList<>();
+    private static List<String[]> buyerNames = new ArrayList<>();
 
     //This runs every time the server starts
     static {
-        categories.add("IT");
+/*        categories.add("IT");
         categories.add("Kørsel");
         categories.add("Cafeteriet");
         categories.add("Frynsegoder");
@@ -31,15 +35,13 @@ public class ItemService {
         buyerNames.add("Rasmus Jakobsen");
         buyerNames.add("Martin Rylund");
         buyerNames.add("Athusan Kugathasan");
-        buyerNames.add("Patrick Hansen");
+        buyerNames.add("Patrick Hansen");*/
+
+        categories = categoryDAO.getCategories();
+
+        buyerNames = userDAO.getUsers();
     }
 
-    public void addNameToArray(String name) {
-        buyerNames.add(name);
-    }
-    public void addCategoryToArray(String category) {
-        categories.add(category);
-    }
     public void removeNameFromArray(int posToDel) {
         buyerNames.remove(posToDel);
     }
@@ -54,6 +56,7 @@ public class ItemService {
         //removes every before, and also the string itself " - ".
         //fx "10 - IT" becomes "IT". "10 - " is removed.
         String category = (jsonObject.getString("category")).replaceAll(".* - ", "");
+        System.out.println("test ja" + category);
         String buyersName = (jsonObject.getString("buyersName")).replaceAll(".* - ", "");
 
         //creating an item and adding it to the array
@@ -66,11 +69,9 @@ public class ItemService {
                 buyersName,
                 jsonObject.getString("comment")
         );
-        item.addItem(item);
+        itemList.addItem(item);
 
-        for(Item item1 : item.getItemList()) {
-            System.out.println(item1);
-        }
+        itemDAO.createItem(item);
     }
 
     @Path("getCategory")
@@ -88,17 +89,9 @@ public class ItemService {
     @Path("addCategory")
     @POST
     public void addCategory(String category) {
-        //creating JSON object of the string we get
         JSONObject catObject = new JSONObject(category);
-        //take the string out of our JSON object
-        //here: json-key=testAddCategory and
-        //json-value=value of the text field
         String catString = catObject.getString("category");
-        addCategoryToArray(catString);
-        System.out.println("added: " + catString);
-        for(String s: categories) {
-            System.out.println("add: "+s);
-        }
+        categoryDAO.createCategory(catString);
     }
 
     // FIXME: 17-06-2019 giver HTTP error 500 (inter server fejl)
@@ -110,7 +103,7 @@ public class ItemService {
         String buyersName = obj.getString("buyersNameSearch");
 
         System.out.println("hrello " + category);
-        List<Item> list = item.getItemsByCategory(category);
+        List<Item> list = itemList.getItemsByCategory(category);
         for(Item item: list) {
             System.out.println(item);
         }
@@ -124,11 +117,8 @@ public class ItemService {
         //creating JSON object of the string we get
         JSONObject nameObj = new JSONObject(buyersName);
         String name = nameObj.getString("buyersName");
-        addNameToArray(name);
-        System.out.println("name add: " + name);
-        for(String s: buyerNames) {
-            System.out.println("name: " + s);
-        }
+        userDAO.createUser(name);
+        buyerNames = userDAO.getUsers();
     }
 
     @Path("deleteCategory")
@@ -137,9 +127,6 @@ public class ItemService {
         JSONObject obj = new JSONObject(data);
         int numToDel = obj.getInt("numToDel");
         removeCategoryFromArray(numToDel);
-        for(String s: categories) {
-            System.out.println("del: "+s);
-        }
     }
 
     @Path("deleteName")
