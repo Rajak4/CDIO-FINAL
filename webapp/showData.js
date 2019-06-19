@@ -11,6 +11,7 @@ function loadFromServerToSearch() {
             console.log("Data: " + data);
             categoriesSearchArray.push(val);
         });
+        console.log(categoriesSearchArray);
         makeCatSearchDropdown(categoriesSearchArray);
     });
     $.getJSON("rest/item/getBuyerNames/", function (data) {
@@ -51,18 +52,45 @@ function makeNameSearchDropdown(data) {
 //this is for the server to "catch" it from that url.
 function sendItemToServer() {
     event.preventDefault();
-    var data = $('#showDataFrom').serializeJSON();
+    var data = $('#showDataForm').serializeJSON();
     console.log(data);
     $.ajax({
         url: 'rest/item/getShowData/',
         method: 'POST',
         contentType: "application/json",
         data: data,
-        success: function (result) {
-            console.log(JSON.stringify(result));
+        success: function (data) {
+               alert("SOVS");
+               console.log("MERE SOVS");
+            $("#dataTable").empty();
+                $.each(data, function (key, val) {
+                    console.log("dataaaaaa:" + JSON.stringify(data));
+
+                     $('#dataTable').append(generateTable(val));
+                });
         },
-        error: function (data) {
-            console.log("fail");
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert(jqXHR.responseText);
         }
     });
+}
+
+// function getTableData() {
+//     $.getJSON('rest/item/getTableData/', function (data) {
+//         $.each(data, function (key, val) {
+//             console.log("dataaaaaa:" + data);
+//             console.log("val: " + val);
+//             $('#dataTable').append(generateTable(val));
+//         });
+//     });
+// }
+
+function generateTable(item) {
+    return '<tr><td>' + item.productName + '</td>' +
+        '<td>' + item.price + '</td>' +
+        '<td>' + item.amount + '</td>' +
+        '<td>' + item.category + '</td>' +
+        '<td>' + item.buyersName + '</td>' +
+        '<td>' + item.comment + '</td>' +
+        '<td>' + item.dateOfPurchase + '</td></tr>'
 }

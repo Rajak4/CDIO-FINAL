@@ -12,7 +12,8 @@ public class Item {
     private String buyersName;
     private String comment;
 
-    public Item() {}
+    public Item() {
+    }
 
     public Item(String category, String productName, double price, int amount, String dateOfPurchase, String buyersName, String comment) {
         this.category = category;
@@ -29,62 +30,62 @@ public class Item {
     }
 
     //item list
-    private static List<Item> itemList = new ArrayList<>();
+//    private List<Item> itemList = new ArrayList<>();
 
-    static {
-        itemList.add(new Item("IT", "MacBook Pro", 10900, 1, "2019-02-22", "Patrick Hansen", "Købt for sjov."));
-        itemList.add(new Item("IT", "Huawei Matebook", 8899, 2, "2019-04-05", "Athusan Kugathasan", "Computer til kontor."));
-        itemList.add(new Item("IT", "8k projektor", 12000, 1, "2019-04-26", "Athusan Kugathasan", "Projektor til møder."));
-        itemList.add(new Item("Kørsel", "Lambo", 120000.5, 1, "2019-10-02", "Rasmus Jakobsen", "Firma bil."));
-    }
+//    static {
+//        itemList.add(new Item("IT", "MacBook Pro", 10900, 1, "2019-02-22", "Patrick Hansen", "Købt for sjov."));
+//        itemList.add(new Item("IT", "Huawei Matebook", 8899, 2, "2019-04-05", "Athusan Kugathasan", "Computer til kontor."));
+//        itemList.add(new Item("IT", "8k projektor", 12000, 1, "2019-04-26", "Athusan Kugathasan", "Projektor til møder."));
+//        itemList.add(new Item("Kørsel", "Lambo", 120000.5, 1, "2019-10-02", "Rasmus Jakobsen", "Firma bil."));
+//    }
 
-    public void addItem(Item item) {
-        itemList.add(item);
-    }
-
-    public List<Item> getItemList() {
-        return itemList;
-    }
-
-    //returns a list of items bought in same category
-    public List<Item> getItemsByCategory(String category) {
-        List<Item> itemsToReturn = new ArrayList<>();
-        for(Item item: itemList) {
-            if(item.getCategory().equals(category)) {
-                itemsToReturn.add(item);
-            }
-        }
-        return itemsToReturn;
-    }
-
-    //returns a list of items bought by the same person
-    public List<Item> getItemsByBuyersName(String name) {
-        List<Item> itemsToReturn = new ArrayList<>();
-        for(Item item: itemList) {
-            if(item.getBuyersName().equals(name)) {
-                itemsToReturn.add(item);
-            }
-        }
-        return itemsToReturn;
-    }
-
-    //returns a list of items bought in a give day
-    public List<Item> getItemDataRange(String date) {
-        List<Item> itemsToReturn = new ArrayList<>();
-        for(Item item: itemList) {
-            if(item.getDateOfPurchase().equals(date)) {
-                itemsToReturn.add(item);
-            }
-        }
-        return itemsToReturn;
-    }
+//    public void addItem(Item item) {
+//        itemList.add(item);
+//    }
+//
+//    public List<Item> getItemList() {
+//        return itemList;
+//    }
+//
+//    //returns a list of items bought in same category
+//    public List<Item> getItemsByCategory(String category) {
+//        List<Item> itemsToReturn = new ArrayList<>();
+//        for (Item item : itemList) {
+//            if (item.getCategory().equals(category)) {
+//                itemsToReturn.add(item);
+//            }
+//        }
+//        return itemsToReturn;
+//    }
+//
+//    //returns a list of items bought by the same person
+//    public List<Item> getItemsByBuyersName(String name) {
+//        List<Item> itemsToReturn = new ArrayList<>();
+//        for (Item item : itemList) {
+//            if (item.getBuyersName().equals(name)) {
+//                itemsToReturn.add(item);
+//            }
+//        }
+//        return itemsToReturn;
+//    }
+//
+//    //returns a list of items bought in a give day
+//    public List<Item> getItemDataRange(String date) {
+//        List<Item> itemsToReturn = new ArrayList<>();
+//        for (Item item : itemList) {
+//            if (item.getDateOfPurchase().equals(date)) {
+//                itemsToReturn.add(item);
+//            }
+//        }
+//        return itemsToReturn;
+//    }
 
     // TODO: 17-06-2019 list mellem to datoer.
 
     //returns the total price for a given list
     public double getPriceByList(List<Item> items) {
         double price = 0;
-        for(Item item: items) {
+        for (Item item : items) {
             price += item.getPrice();
         }
         return price;
@@ -95,6 +96,7 @@ public class Item {
     public void setCategory(String category) {
         this.category = category;
     }
+
     public String getCategory() {
         return category;
     }
@@ -102,6 +104,7 @@ public class Item {
     public void setProductName(String productName) {
         this.productName = productName;
     }
+
     public String getProductName() {
         return productName;
     }
@@ -109,6 +112,7 @@ public class Item {
     public void setPrice(double price) {
         this.price = price;
     }
+
     public double getPrice() {
         return price;
     }
@@ -116,6 +120,7 @@ public class Item {
     public void setAmount(int amount) {
         this.amount = amount;
     }
+
     public int getAmount() {
         return amount;
     }
@@ -123,6 +128,7 @@ public class Item {
     public void setDateOfPurchase(String dateOfPurchase) {
         this.dateOfPurchase = dateOfPurchase;
     }
+
     public String getDateOfPurchase() {
         return dateOfPurchase;
     }
@@ -130,6 +136,7 @@ public class Item {
     public void setBuyersName(String buyersName) {
         this.buyersName = buyersName;
     }
+
     public String getBuyersName() {
         return buyersName;
     }
@@ -137,6 +144,7 @@ public class Item {
     public void setComment(String comment) {
         this.comment = comment;
     }
+
     public String getComment() {
         return comment;
     }

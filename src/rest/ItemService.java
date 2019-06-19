@@ -5,10 +5,13 @@ import javax.ws.rs.core.MediaType;
 
 import dal.*;
 import dto.Item;
+import dto.SearchItem;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Path("item")
@@ -22,6 +25,9 @@ public class ItemService {
     private static IUserDAO userDAO = new UserDAOImpl();
     private static List<String[]> categories = new ArrayList<>();
     private static List<String[]> buyerNames = new ArrayList<>();
+    public Item oneItem = new Item();
+    public SearchItem oneSearchItem = new SearchItem();
+
 
     //This runs every time the server starts
     static {
@@ -56,7 +62,7 @@ public class ItemService {
         //removes every before, and also the string itself " - ".
         //fx "10 - IT" becomes "IT". "10 - " is removed.
         String category = (jsonObject.getString("category")).replaceAll(".* - ", "");
-        System.out.println("test ja" + category);
+        System.out.println("test ja " + category);
         String buyersName = (jsonObject.getString("buyersName")).replaceAll(".* - ", "");
 
         //creating an item and adding it to the array
@@ -69,7 +75,7 @@ public class ItemService {
                 buyersName,
                 jsonObject.getString("comment")
         );
-        itemList.addItem(item);
+        //itemList.addItem(item);
 
         itemDAO.createItem(item);
     }
@@ -89,28 +95,50 @@ public class ItemService {
     @Path("addCategory")
     @POST
     public void addCategory(String category) {
+        //creating JSON object of the string we get
         JSONObject catObject = new JSONObject(category);
+        //take the string out of our JSON object
+        //here: json-key=testAddCategory and
+        //json-value=value of the text field
         String catString = catObject.getString("category");
         categoryDAO.createCategory(catString);
         categories = categoryDAO.getCategories();
     }
 
-    // FIXME: 17-06-2019 giver HTTP error 500 (inter server fejl)
+    private static List<Item> itemsToReturn;
+
+
+    // FIXME: 17-06-2019 giver HTTP error 500 (internal server fejl)
+   // @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     @Path("getShowData")
     @POST
-    public JSONArray getShowData(String data) {
-        JSONObject obj = new JSONObject(data);
-        String category = obj.getString("categorySearch");
-        String buyersName = obj.getString("buyersNameSearch");
+    public List<Item> getShowData(SearchItem data) throws SQLException {
 
-        System.out.println("hrello " + category);
-        List<Item> list = itemList.getItemsByCategory(category);
-        for(Item item: list) {
-            System.out.println(item);
-        }
-        return new JSONArray(list);
-        //return new JSONArray(categories);
+        System.out.println(data);
+//
+//        System.out.println("TEST");
+//        JSONObject obj = new JSONObject(data);
+        String category = data.getCategorySearch().replaceAll(".*,", "");
+           itemsToReturn = itemDAO.searchForCategoryDB(category);
+//        System.out.println(itemsToReturn.size());
+//        for(Item item: itemsToReturn) {
+//            System.out.println(item);
+//        }
+
+        return itemsToReturn;
     }
+
+//    @Path("getTableData")
+//    @GET
+//    public List<Item> getTableItem() {
+//        System.out.println("hejjj");
+////        for(Item item: itemsToReturn) {
+////            System.out.println("nej: "+item);
+////        }
+//        return
+//    }
 
     @Path("addBuyersName")
     @POST

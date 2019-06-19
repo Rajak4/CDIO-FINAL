@@ -41,6 +41,10 @@
 </head>
 
 <body onload="loadFromServer()">
+<div class="menu">
+    <a href="index.html"><input type="submit" class="topButton sendButton" value="Send data"></a>
+    <a href="showData.html"><input type="submit" class="topButton receiveButton" value="Hent data"></a>
+</div>
     <div class="form-regnskab">
         <div class="form-title">
             <h1><img src="img/logo_white.png" style="height: 45px; position: absolute; float: left; margin-top: 12px; margin-left: -35px;">egnskabshjælper</h1>
@@ -99,8 +103,7 @@
                 </label>
             </div>
 
-            <input type="submit" value="Indsend">
-            <a href="showData.html"><input ID="hentdata" value="Hent data"></a>
+            <input type="submit" id="indsendKnap" value="Indsend">
         </form>
     </div>
 

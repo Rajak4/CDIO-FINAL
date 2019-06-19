@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Data</title>
+
+    <script src="jquery-3.1.1.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <!--<script src="select2/dist/js/select2.min.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+
+    <script type="text/javascript" src="showData.js"></script>
+    <script src="jquery.serialize-object.js"></script>
+
+    <!--css for dropdown-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/bulma.min.css">
+    <!--CSS for autocomplete dropdown box-->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel="shortcut icon" href="img/logo_blue.png">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+</head>
+<body>
+<button onclick="sendItemToServer()">hej</button>
+
+<table>
+    <thead>
+    <tr>
+        <td>Produktnavn</td>
+        <td>Pris i kr. (excl. moms)</td>
+        <td>Antal</td>
+        <td>Kategori</td>
+        <td>Købers navn</td>
+        <td>Kommentar</td>
+        <td>Dato for køb</td>
+        <!-- <td>Slet ingrediens<td> -->
+    </tr>
+    </thead>
+    <tbody id="dataTable">
+
+    </tbody>
+</table>
+</body>
+</html>

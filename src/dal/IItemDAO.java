@@ -18,4 +18,6 @@ public interface IItemDAO {
 
     List<Item> getItems() throws SQLException;
 
+    List<Item> searchForCategoryDB(String category) throws SQLException;
+
 }

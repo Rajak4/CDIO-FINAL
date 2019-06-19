@@ -15,7 +15,11 @@ function sendItemToServer() {
         url: 'rest/item/receiveForm/',
         method: 'POST',
         contentType: "application/json",
-        data: data
+        data: data,
+        success: function(){
+            alert("Indsendt");
+        }
+
     });
 }
 

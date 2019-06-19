@@ -12,7 +12,7 @@ public class UserDAOImpl implements IUserDAO{
     @Override
     public String getUser(int ID) {
         try {
-            Connection c = MySQL_conn.getConnection();
+            Connection c = MySQL_conn.getInstance().getConnection();
             PreparedStatement prest = c.prepareStatement("SELECT * FROM users WHERE ID = ?");
             prest.setInt(1, ID);
             ResultSet result = prest.executeQuery();
@@ -28,7 +28,7 @@ public class UserDAOImpl implements IUserDAO{
     @Override
     public List<String[]> getUsers() {
         try {
-            Connection c = MySQL_conn.getConnection();
+            Connection c = MySQL_conn.getInstance().getConnection();
             PreparedStatement prest = c.prepareStatement("SELECT * FROM users");
             ResultSet result = prest.executeQuery();
 
@@ -46,7 +46,7 @@ public class UserDAOImpl implements IUserDAO{
     @Override
     public void createUser(String name) {
         try {
-            Connection c = MySQL_conn.getConnection();
+            Connection c = MySQL_conn.getInstance().getConnection();
             PreparedStatement prest = c.prepareStatement("insert into users (userName) values(?)");
             prest.setString(1, name);
             prest.executeUpdate();

@@ -25,13 +25,17 @@
 </head>
 
 <body onload="loadFromServerToSearch()">
-
+<div class="menu">
+    <a href="index.html"><input type="submit" class="topButton sendButton" value="Send data"></a>
+    <a href="showData.html"><input type="submit" class="topButton receiveButton" value="Hent data"></a>
+</div>
 <div class="form-regnskab">
+
     <div class="form-title">
         <h1><img src="img/logo_white.png" style="height: 45px; position: absolute; float: left; margin-top: 12px; margin-left: -35px;">egnskabshjælper</h1>
     </div>
 
-    <form onsubmit="sendItemToServer()" id="showDataFrom">
+    <form onsubmit="sendItemToServer()" id="showDataForm">
 
         <div class="section"><span>1</span>Datafishing</div>
 
@@ -63,34 +67,52 @@
         <div class="section"><span>2</span>Vælg data til visning</div>
 
         <div class="section-inside">
-            <div class="fourColumns" >
+            <!--<div class="fourColumns" >-->
 
-                <label>
-                    <input type="checkbox" name="category" checked> Kategori
-                </label>
+                <!--<label>-->
+                    <!--<input type="checkbox" name="category" checked> Kategori-->
+                <!--</label>-->
 
-                <label>
-                    <input type="checkbox" name="productName" checked> Produktnavn
-                </label>
+                <!--<label>-->
+                    <!--<input type="checkbox" name="productName" checked> Produktnavn-->
+                <!--</label>-->
 
-                <label>
-                    <input type="checkbox" name="price" checked> Pris
-                </label>
+                <!--<label>-->
+                    <!--<input type="checkbox" name="price" checked> Pris-->
+                <!--</label>-->
 
-                <label>
-                    <input type="checkbox" name="amount" checked> Antal
-                </label>
+                <!--<label>-->
+                    <!--<input type="checkbox" name="amount" checked> Antal-->
+                <!--</label>-->
 
-                <label>
-                    <input type="checkbox" name="dateOfPurchase" checked> Dato for køb
-                </label>
-            </div>
+                <!--<label>-->
+                    <!--<input type="checkbox" name="dateOfPurchase" checked> Dato for køb-->
+                <!--</label>-->
+            <!--</div>-->
 
         </div>
 
         <input type="submit" value="Hent data">
     </form>
 </div>
+
+<table>
+<thead>
+<tr>
+    <td>Produktnavn</td>
+    <td>Pris i kr. (excl. moms)</td>
+    <td>Antal</td>
+    <td>Kategori</td>
+    <td>Købers navn</td>
+    <td>Kommentar</td>
+    <td>Dato for køb</td>
+    <!-- <td>Slet ingrediens<td> -->
+</tr>
+</thead>
+<tbody id="dataTable">
+
+</tbody>
+</table>
 </body>
 
 <script>

@@ -11,7 +11,7 @@
 
     width: 550px;
     padding: 20px;
-    margin: 40px auto;
+    margin: 30px auto;
     background: #FFFFFF;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -183,7 +183,8 @@ select
 
 .form-regnskab input[type="submit"]:hover,
 #hentdata:hover,
-.addbutton:hover
+.addbutton:hover,
+.topButton:hover
 {
     /*Firefox support*/
     -moz-box-shadow: inset 0 2px 2px 0 rgba(255, 255, 255, 0.3);
@@ -213,5 +214,39 @@ select
 .fourColumns label
 {
     display: inline-block;
-    width: 30%
+    width: 30%;
+}
+
+.menu
+{
+    background-color: white;
+    alignment: center;
+    padding-left: 37%;
+    margin: auto;
+}
+
+.topButton
+{
+    /*margin: auto;*/
+    background: #4587f4;
+    color: #FFFFFF;
+    display: inline-block;
+    float: top;
+    height: 38px;
+    margin-top: 7px;
+    margin-bottom: -50px;
+    width: 20%;
+    border-radius: 7px;
+    box-shadow: inset 0 2px 2px 0 rgba(255, 255, 255, 0.3);
+}
+
+.topButton :hover
+{
+
+}
+
+#indsendKnap
+{
+    margin-left: 72.2%;
+    background-color: #12af2f;
 }
