@@ -114,4 +114,22 @@ public class ItemDAOImpl implements IItemDAO {
         }
         return items;
     }
+
+    void updateSheets(String stm){
+        try{
+            Connection c = MySQL_conn.getConnection();
+            Statement st = c.createStatement();
+
+            st.executeQuery("USE u748359586_02324;");
+            st.executeQuery("SET SQL_SAFE_UPDATES = 0;");
+            st.executeQuery("UPDATE query SET string = " + stm +";" );
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+
+    }
+
+
+
 }
