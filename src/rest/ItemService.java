@@ -92,6 +92,7 @@ public class ItemService {
         JSONObject catObject = new JSONObject(category);
         String catString = catObject.getString("category");
         categoryDAO.createCategory(catString);
+        categories = categoryDAO.getCategories();
     }
 
     // FIXME: 17-06-2019 giver HTTP error 500 (inter server fejl)

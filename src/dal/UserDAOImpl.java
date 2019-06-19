@@ -17,7 +17,7 @@ public class UserDAOImpl implements IUserDAO{
             prest.setInt(1, ID);
             ResultSet result = prest.executeQuery();
 
-            if (result.next()) return result.getString("name");
+            if (result.next()) return result.getString("userName");
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -34,7 +34,7 @@ public class UserDAOImpl implements IUserDAO{
 
             List<String[]> users = new ArrayList<>();
             while (result.next()){
-                users.add(new String[]{result.getString("ID"), result.getString("name")});
+                users.add(new String[]{result.getString("ID"), result.getString("userName")});
             }
             return users;
         } catch (SQLException e) {
@@ -47,7 +47,7 @@ public class UserDAOImpl implements IUserDAO{
     public void createUser(String name) {
         try {
             Connection c = MySQL_conn.getConnection();
-            PreparedStatement prest = c.prepareStatement("insert into users (name) values(?)");
+            PreparedStatement prest = c.prepareStatement("insert into users (userName) values(?)");
             prest.setString(1, name);
             prest.executeUpdate();
         } catch (SQLException e) {
