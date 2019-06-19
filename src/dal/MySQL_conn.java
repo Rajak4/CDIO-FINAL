@@ -2,6 +2,7 @@ package dal;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import static java.lang.System.exit;
@@ -13,7 +14,7 @@ public class MySQL_conn {
         int attempts = 0;
         while(true) {
             try {
-                if (connection != null && !connection.isClosed()) {
+                if (connection != null && !connection.isClosed() && connection.isValid(1000)) {
                     return connection;
                 } else {
                     Class.forName("com.mysql.cj.jdbc.Driver");
