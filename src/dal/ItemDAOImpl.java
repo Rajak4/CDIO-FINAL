@@ -1,6 +1,7 @@
 package dal;
 
 import dto.Item;
+import dto.SearchItem;
 
 import javax.xml.transform.Result;
 import java.sql.*;
@@ -116,25 +117,17 @@ public class ItemDAOImpl implements IItemDAO {
     }
 
     @Override
-    public List<Item> searchForCategoryDB(String category) throws SQLException {
+    public List<Item> searchForCategoryDB(SearchItem searchItem) throws SQLException {
         Connection c = MySQL_conn.getInstance().getConnection();
         List<Item> items = new ArrayList<>();
+        String sqlString = "select productName, price, amount, cat.categoryName, u.userName, comment, dateOfPurchase from item i inner join category cat on i.categoryNumber = cat.categoryNumber inner join users u on i.purchaser = u.ID where";
+        String and = "and";
+        String categoryName = " cat.categoryName = ? ";
+        String purchaser = " u.userName = ? ";
         PreparedStatement prest = c.prepareStatement(
-                "select productName, \n" +
-                "\tprice, \n" +
-                "\tamount, \n" +
-                "    cat.categoryName,\n" +
-                "    u.userName,\n" +
-                "    comment,\n" +
-                "    dateOfPurchase\n" +
-                "    from item i \n" +
-                "    inner join category cat\n" +
-                "    on i.categoryNumber = cat.categoryNumber \n" +
-                "    inner join users u\n" +
-                "    on i.purchaser = u.ID\n" +
-                "    where cat.categoryName = ?;");
+                sqlString + categoryName);
 
-        prest.setString(1, category);
+        prest.setString(1, searchItem.getCategorySearch().replaceAll(".*,", ""));
         ResultSet result = prest.executeQuery();
         while(result.next()) {
             Item item = new Item();

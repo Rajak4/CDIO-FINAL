@@ -1,6 +1,7 @@
 package dal;
 
 import dto.Item;
+import dto.SearchItem;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -18,6 +19,6 @@ public interface IItemDAO {
 
     List<Item> getItems() throws SQLException;
 
-    List<Item> searchForCategoryDB(String category) throws SQLException;
+    List<Item> searchForCategoryDB(SearchItem searchItem) throws SQLException;
 
 }

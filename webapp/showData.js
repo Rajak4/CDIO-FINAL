@@ -62,12 +62,14 @@ function sendItemToServer() {
         success: function (data) {
                alert("SOVS");
                console.log("MERE SOVS");
+               var totalPrice = 0;
             $("#dataTable").empty();
                 $.each(data, function (key, val) {
+                    totalPrice += val.price;
                     console.log("dataaaaaa:" + JSON.stringify(data));
-
                      $('#dataTable').append(generateTable(val));
                 });
+                $('#dataTable').append(showTotalPrice(totalPrice))
         },
         error: function (jqXHR, textStatus, errorThrown) {
             alert(jqXHR.responseText);
@@ -93,4 +95,9 @@ function generateTable(item) {
         '<td>' + item.buyersName + '</td>' +
         '<td>' + item.comment + '</td>' +
         '<td>' + item.dateOfPurchase + '</td></tr>'
+}
+
+function showTotalPrice(totalPrice) {
+    return '<hr><tr><td>Pris i alt: </td>' +
+        '<td>' + totalPrice + '</td></tr>'
 }

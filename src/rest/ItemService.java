@@ -106,39 +106,39 @@ public class ItemService {
     }
 
     private static List<Item> itemsToReturn;
-
-
-    // FIXME: 17-06-2019 giver HTTP error 500 (internal server fejl)
-   // @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Path("getShowData")
     @POST
     public List<Item> getShowData(SearchItem data) throws SQLException {
-
         System.out.println(data);
-//
-//        System.out.println("TEST");
-//        JSONObject obj = new JSONObject(data);
+
         String category = data.getCategorySearch().replaceAll(".*,", "");
-           itemsToReturn = itemDAO.searchForCategoryDB(category);
-//        System.out.println(itemsToReturn.size());
-//        for(Item item: itemsToReturn) {
-//            System.out.println(item);
+        String name = data.getBuyersNameSearch().replaceAll(".*,", "");
+        String startDate = data.getDateOfPurchaseStart();
+        String endDate = data.getDateOfPurchaseEnd();
+//        boolean start = false;
+//        boolean end = false;
+//
+//        List<String> searchList = new ArrayList<>();
+//        if(!category.equals("Ingen kategori")) searchList.add(category);
+//        if(!name.equals("Intet navn")) searchList.add(name);
+//        if(!startDate.equals("")) {
+//            searchList.add(startDate);
+//            start = true;
 //        }
+//        if(!endDate.equals("")) {
+//            searchList.add(endDate);
+//            end = true;
+//        }
+//        if(start && end) {
+//
+//        }
+
+        itemsToReturn = itemDAO.searchForCategoryDB(data);
 
         return itemsToReturn;
     }
-
-//    @Path("getTableData")
-//    @GET
-//    public List<Item> getTableItem() {
-//        System.out.println("hejjj");
-////        for(Item item: itemsToReturn) {
-////            System.out.println("nej: "+item);
-////        }
-//        return
-//    }
 
     @Path("addBuyersName")
     @POST
