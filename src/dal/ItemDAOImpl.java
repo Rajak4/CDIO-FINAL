@@ -75,21 +75,101 @@ public class ItemDAOImpl implements IItemDAO {
     }
 
     @Override
-    public List<Item> getItems(String category, String purchaser, String productName, String date1, String date2) throws SQLException {
+    public List<Item> getItems(boolean category, boolean purchaser, boolean productName, boolean price, boolean amount, boolean date, boolean comment, String purchaserName, String categoryName, String date1, String date2) throws SQLException {
+        boolean firstWhere = true;
+        StringBuilder hej = new StringBuilder();
+        StringBuilder test = new StringBuilder();
+        hej.append("Select");
+
+        if (category) {
+            hej.append(" category.categoryName as categoryName");
+        }
+        if (purchaser) {
+            hej.append(" users.userName as nameOfPurchaser");
+        }
+        if (productName) {
+            hej.append(" item.productName");
+        }
+        if (price) {
+            hej.append(" item.price");
+        }
+
+        if (amount) {
+            hej.append(" item.amount");
+        }
+
+        if (date) {
+            hej.append(" item.dateOfPurchase");
+        }
+
+        if (comment) {
+            hej.append(" item.comment");
+        }
+
+        hej.append(" FROM item INNER JOIN category ON item.categoryNumber = category.categoryNumber INNER JOIN users ON purchaser = users.ID");
+
+        if (!purchaserName.equals("")) {
+            hej.append(" WHERE").append(" nameOfPurchaser = ?");
+            test.append("1");
+            firstWhere = false;
+        } else test.append("0");
+
+        if (!categoryName.equals("")) {
+            hej.append(firstWhere ? " WHERE" : " AND").append(" categoryName = ?");
+            test.append("1");
+            firstWhere = false;
+        } else test.append("0");
+
+        if (!date1.equals("") || !date2.equals("")) {
+            if(!date1.equals("") && !date2.equals("")) {
+                test.append("11");
+                hej.append(" BETWEEN ? AND ?");
+            }
+
+            if (!date1.equals("")) {
+                hej.append(firstWhere ? " WHERE" : " AND").append(" item.dateOfPurchase > ?");
+                test.append("10");
+            }
+
+            if (!date2.equals("")) {
+                hej.append(firstWhere ? " WHERE" : " AND").append(" item.dateOfPurchase < ?");
+                test.append("01");
+            }
+        }
+
         Connection c = MySQL_conn.getConnection();
         List<Item> items = new ArrayList<>();
+        PreparedStatement prest = c.prepareStatement(hej.toString());
 
-        PreparedStatement prest = c.prepareStatement("SELECT item.productName, item.price, item.amount, item.dateOfPurchase, users.userName as nameOfPurchaser, item.comment, category.categoryName as categoryName FROM item INNER JOIN category ON item.categoryNumber = category.categoryNumber INNER JOIN users ON purchaser = users.ID");
+        int curPos = 1;
+        if(test.charAt(0) == '1') {
+            prest.setString(curPos, purchaserName);
+            curPos++;
+        }
+        if(test.charAt(1) == '1') {
+            prest.setString(curPos, categoryName);
+            curPos++;
+        }
+        if(test.charAt(2) == '1') {
+            prest.setString(curPos, date1);
+            curPos++;
+        }
+        if(test.charAt(3) == '1') {
+            prest.setString(curPos, date2);
+        }
+
+
+        //PreparedStatement prest = c.prepareStatement("SELECT item.productName, item.price, item.amount, item.dateOfPurchase, users.userName as nameOfPurchaser, item.comment, category.categoryName as categoryName FROM item INNER JOIN category ON item.categoryNumber = category.categoryNumber INNER JOIN users ON purchaser = users.ID");
         ResultSet result = prest.executeQuery();
         while (result.next()) {
             Item item = new Item();
-            item.setCategory("Not rdy");
             item.setProductName(result.getString("productName"));
             item.setPrice(result.getInt("price"));
             item.setAmount(result.getInt("amount"));
             item.setDateOfPurchase(result.getString("dateOfPurchase"));
             item.setBuyersName(result.getString("nameOfPurchaser"));
             item.setComment(result.getString("comment"));
+            item.setCategory(result.getString("categoryName"));
             items.add(item);
         }
         return items;

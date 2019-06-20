@@ -11,15 +11,17 @@ public class MySQL_conn {
     public static Connection getConnection() throws SQLException {
         try {
 
-            if (connection != null && !connection.isClosed() && connection.isValid(1000)) {
-                return connection;
+            if (connection != null && !connection.isClosed() && connection.isValid(1)) {
+                    return connection;
             } else {
+
                 Class.forName("com.mysql.cj.jdbc.Driver");
 
                 connection = DriverManager.getConnection("jdbc:mysql://sql223.main-hosting.eu:3306/u748359586_02324?"
                         + "user=u748359586_02324&password=jR2qSR2gHsCK&autoReconnect=true");
                 return connection;
             }
+
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }

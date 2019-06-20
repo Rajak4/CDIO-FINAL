@@ -15,7 +15,7 @@ public interface IItemDAO {
 
     Item getItem(int ID) throws SQLException;
 
-    List<Item> getItems(String category, String purchaser, String productName, String date1, String date2) throws SQLException;
+    List<Item> getItems(boolean category, boolean purchaser, boolean productName, boolean price, boolean amount, boolean date, boolean comment, String purchaserName, String categoryName, String date1, String date2) throws SQLException;
 
     List<Item> getItems() throws SQLException;
 
