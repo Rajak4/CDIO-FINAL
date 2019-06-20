@@ -4,10 +4,9 @@ function createTable() {
     $("#dataTable").empty();
     $.each(data, function (key, val) {
         totalPrice += val.price * (val.amount);
-        console.log("dataaaaaa:" + JSON.stringify(data));
         $('#dataTable').append(generateTable(val));
     });
-    $('#dataTable').append(showTotalPrice(totalPrice));
+    $('#tableTotalPrice').append(showTotalPrice(totalPrice));
 }
 
 function generateTable(item) {
@@ -21,6 +20,6 @@ function generateTable(item) {
 }
 
 function showTotalPrice(totalPrice) {
-    return '<hr><tr><td>Pris i alt: </td>' +
-        '<td>' + totalPrice + '</td></tr>'
+    return '<tr><td>Pris i alt:</td>' +
+        '<td>' + totalPrice + " kr. (excl. moms)" + '</td></tr>'
 }

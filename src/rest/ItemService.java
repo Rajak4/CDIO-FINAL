@@ -11,13 +11,13 @@ import org.json.JSONObject;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+
 
 @Path("item")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public class ItemService {
+public class ItemService{
 
     public Item itemList = new Item();
     private IItemDAO itemDAO = new ItemDAOImpl();
@@ -112,12 +112,12 @@ public class ItemService {
     @POST
     public List<Item> getShowData(SearchItem data) throws SQLException {
         System.out.println(data);
-
-        String categorySearch = data.getCategorySearch().replaceAll(".*,", "");
-        String name = data.getBuyersNameSearch().replaceAll(".*,", "");
+        System.out.println("hej");
+        String categorySearch = data.getCategory().replaceAll(".*,", "");
+        String name = data.getBuyersName().replaceAll(".*,", "");
         String startDate = data.getDateOfPurchaseStart();
         String endDate = data.getDateOfPurchaseEnd();
-        boolean category = data.isCategory();
+        boolean category = data.isCategoryc();
         boolean purchaser= data.isPurchaser();
         boolean productName = data.isProductName();
         boolean price = data.isPrice();

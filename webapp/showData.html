@@ -22,7 +22,7 @@
 
     <!--<script src="select2/dist/js/select2.min.js"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
-    <script type="text/javascript" src="showData.js"></script>
+    <script type="text/javascript" src="script.js"></script>
 
     <!--css for dropdown-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet">
@@ -38,91 +38,91 @@
 
 </head>
 
-<body onload="loadFromServerToSearch()">
+<body onload="loadFromServer(true)">
     <div class="menu">
         <a href="index.html"><input type="submit" class="topButton sendButton" value="Send data"></a>
         <a href="showData.html"><input type="submit" class="topButton receiveButton" value="Hent data"></a>
     </div>
 
-    <div class="form-regnskab">
+<div class="form-regnskab">
 
-        <div class="form-title">
-            <h1><img src="img/logo_white.png" style="height: 45px; position: absolute; float: left; margin-top: 12px; margin-left: -35px;">egnskabshjælper</h1>
-        </div>
+    <div class="form-title">
+        <h1><img src="img/logo_white.png" style="height: 45px; position: absolute; float: left; margin-top: 12px; margin-left: -35px;">egnskabshjælper</h1>
+    </div>
 
-        <form onsubmit="sendItemToServer()" id="showDataForm">
+        <form onsubmit="sendItemToServer2()" id="itemForm">
 
-            <div class="section"><span>1</span>Datafishing</div>
+        <div class="section"><span>1</span>Datafishing</div>
 
-            <div class="section-inside">
+        <div class="section-inside">
 
                 <!--man kan ikke søge, hvis selecten er INDE i label, men det virker, når den er sådan her-->
-                <label for="categorySearch" class="label">Kategori:</label>
-                <select name="categorySearch" id="categorySearch" style="width: 100%;"></select>
+                <label for="category" class="label">Kategori:</label>
+                <select name="category" id="category" style="width: 100%;"></select>
 
-                <label for="buyersNameSearch" class="label">Købers navn:</label>
-                <select name="buyersNameSearch" id="buyersNameSearch" style="width: 100%;"></select>
+                <label for="buyersName" class="label">Købers navn:</label>
+                <select name="buyersName" id="buyersName" style="width: 100%;"></select>
 
 
-                <div class="twoColumns">
-                    <div>
-                        <label for="dateOfPurchaseStart" class="label">Startdato for søgning:
-                            <input id="dateOfPurchaseStart" type="date" name="dateOfPurchaseStart">
-                        </label>
+            <div class="twoColumns">
+                <div>
+                    <label for="dateOfPurchaseStart" class="label">Startdato for søgning:
+                        <input id="dateOfPurchaseStart" type="date" name="dateOfPurchaseStart">
+                    </label>
 
-                        <label for="dateOfPurchaseEnd" class="label">Slutdato for søgning:
-                            <input id="dateOfPurchaseEnd" type="date" name="dateOfPurchaseEnd">
-                        </label>
-                    </div>
+                    <label for="dateOfPurchaseEnd" class="label">Slutdato for søgning:
+                        <input id="dateOfPurchaseEnd" type="date" name="dateOfPurchaseEnd">
+                    </label>
                 </div>
-
             </div>
 
-            <div class="section"><span>2</span>Vælg data til visning</div>
+        </div>
 
-            <div class="section-inside">
-                <div class="fourColumns" >
+        <div class="section"><span>2</span>Vælg data til visning</div>
 
-                    <label>
-                        <input type="checkbox" name="purchaser" checked> Køber
-                    </label>
+        <div class="section-inside">
+            <div class="fourColumns" >
 
-                    <label>
-                        <input type="checkbox" name="category" checked> Kategori
-                    </label>
+                <label>
+                    <input type="checkbox" name="purchaser" checked> Køber
+                </label>
 
                     <label>
-                        <input type="checkbox" name="productName" checked> Produktnavn
+                        <input type="checkbox" name="categoryc" checked> Kategori
                     </label>
 
-                    <label>
-                        <input type="checkbox" name="price" checked> Pris
-                    </label>
+                <label>
+                    <input type="checkbox" name="productName" checked> Produktnavn
+                </label>
 
-                    <label>
-                        <input type="checkbox" name="amount" checked> Antal
-                    </label>
-                    <label>
-                        <input type="checkbox" name="comment" checked> Kommentar
-                    </label>
+                <label>
+                    <input type="checkbox" name="price" checked> Pris
+                </label>
 
-                    <label>
-                        <input type="checkbox" name="dateOfPurchase" checked> Dato for køb
-                    </label>
-                </div>
+                <label>
+                    <input type="checkbox" name="amount" checked> Antal
+                </label>
+                <label>
+                    <input type="checkbox" name="comment" checked> Kommentar
+                </label>
+
+                <label>
+                    <input type="checkbox" name="dateOfPurchase" checked> Dato for køb
+                </label>
+            </div>
             <hr>
-            </div>
-            <div id="hentDataSumbit">
-                <input type="submit" value="Hent data" id="hej"/>
-            </div>
+        </div>
+        <div id="hentDataSumbit">
+            <input type="submit" value="Hent data" id="hej"/>
+        </div>
 
-        </form>
-    </div>
+    </form>
+</div>
 </body>
 
 <script>
     //this is the searchbar in the dropdown
-    $('#categorySearch').select2();
-    $('#buyersNameSearch').select2();
+    $('#category').select2();
+    $('#buyersName').select2();
 </script>
 </html>

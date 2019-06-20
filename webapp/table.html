@@ -15,50 +15,66 @@
     <script type="text/javascript" src="createTable.js"></script>
     <script src="jquery.serialize-object.js"></script>
 
-    <!--css for dropdown-->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet">
     <!--CSS for autocomplete dropdown box-->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
     <link rel="shortcut icon" href="img/logo_blue.png">
     <link rel="stylesheet" type="text/css" href="css/style.css">
 
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" type="text/css" rel="stylesheet">
+
 </head>
 <body onload="createTable()">
 
-    <div class="menu">
-        <a href="showData.html"><input type="submit" class="topButton sendButton" value="Gå tilbage"></a>
+<a class="goToTopBtn" href="#"> <span>^</span></a>
+
+<div class="menu">
+    <a href="showData.html"><input type="submit" class="topButton" value="Gå tilbage"></a>
+    <input type="submit" class="topButton" style="float: right;" value="Download til .CSV"></a>
+</div>
+<div class="form-regnskab tableClass">
+
+    <div class="form-title">
+        <h1><img src="img/logo_white.png" style="height: 45px; position: absolute; float: left; margin-top: 12px; margin-left: -35px;">egnskabshjælper</h1>
     </div>
 
-    <div class="form-regnskab">
-        <div class="form-title">
-            <h1><img src="img/logo_white.png" style="height: 45px; position: absolute; float: left; margin-top: 12px; margin-left: -35px;">egnskabshjælper</h1>
-        </div>
+    <form action="showData.html" id="showDataFormTable">
 
-        <form action="showData.html" id="showDataForm">
+        <div class="section"><span>1</span>Data</div>
 
-            <div class="section"><span>1</span>Vis data</div>
+        <table class = "tableHeaders">
+            <thead>
+            <tr>
+                <th>Produktnavn</th>
+                <th>Pris i kr. (excl. moms)</th>
+                <th>Antal</th>
+                <th>Kategori</th>
+                <th>Købers navn</th>
+                <th>Kommentar</th>
+                <th>Dato for køb</th>
+                <!-- <td>Slet ingrediens<td> -->
+            </tr>
+            </thead>
+            <tbody id="dataTable">
 
-            <table>
-                <thead>
-                <tr>
-                    <td>Produktnavn</td>
-                    <td>Pris i kr. (excl. moms)</td>
-                    <td>Antal</td>
-                    <td>Kategori</td>
-                    <td>Købers navn</td>
-                    <td>Kommentar</td>
-                    <td>Dato for køb</td>
-                    <!-- <td>Slet ingrediens<td> -->
-                </tr>
-                </thead>
-                <tbody id="dataTable">
+            </tbody>
+
+        </table>
+
+        <div >
+            <table class = "tablePrice">
+                <hr>
+                <tbody id="tableTotalPrice">
 
                 </tbody>
             </table>
+        </div>
 
-            <input type="submit" value="Gå tilbage">
-        </form>
-    </div>
+
+    </form>
+
+
+</div>
 
 </body>
 </html>
