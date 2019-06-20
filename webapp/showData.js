@@ -37,8 +37,13 @@ function makeCatSearchDropdown(data) {
     var dropdown = document.getElementById("categorySearch");
     console.log(data);
     //we loop over the data in jsonArray.
-    $.each(data, function (key, val) {;
-        var catString = (val[0] + " - " + val[1]);
+    $.each(data, function (key, val) {
+        var catString = "";
+        if(key === 0) {
+            catString = val[1];
+        } else {
+            catString = (val[0] + " - " + val[1]);
+        }
         //creating our dropdown list of the data in the array
         var opt = document.createElement("option");
         opt.text = catString;
