@@ -1,10 +1,6 @@
 package dto;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+import java.io.*;
 import java.util.List;
 
 public class CreateCSV {
@@ -12,37 +8,39 @@ public class CreateCSV {
     Item item = new Item();
 
     public void create(List<Item> array) {
-
-        FileWriter csvWriter = null;
-        File dir = new File(".");
-
-        String path = System.getProperty("." + File.separator + "my.properties");
-
+        String k = ",";
+        String CVS = "";
         try {
-            csvWriter = new FileWriter(path);
-            String k = ",";
 
 
             for(int i = 0; i < array.size(); i++){
-                csvWriter.append(array.get(i).getBuyersName());
-                csvWriter.append(k);
-                csvWriter.append(array.get(i).getCategory());
-                csvWriter.append(k);
-                csvWriter.append(array.get(i).getComment());
-                csvWriter.append(k);
-                csvWriter.append(array.get(i).getDateOfPurchase());
-                csvWriter.append(k);
-                csvWriter.append(array.get(i).getProductName());
-                csvWriter.append(k);
+                CVS += array.get(i).getBuyersName();
+                CVS += k;
+                CVS += array.get(i).getCategory();
+                CVS += k;
+                CVS += array.get(i).getComment();
+                CVS += k;
+                CVS += array.get(i).getDateOfPurchase();
+                CVS += k;
+                CVS += array.get(i).getProductName();
+                CVS += k;
 
                 int amount = array.get(i).getAmount();
                 double price = array.get(i).getPrice();
 
-                csvWriter.append(Integer.toString(amount));
-                csvWriter.append(k);
-                csvWriter.append(Double.toString(price));
-                csvWriter.append("\n");
+                CVS += Integer.toString(amount);
+                CVS +=k;
+                CVS +=Double.toString(price);
+                CVS +="\n";
             }
+
+            File file = new File("Regnskab.csv");
+
+            file.setWritable(true);
+            FileWriter csvWriter = new FileWriter(file);
+
+            csvWriter.append(CVS);
+
             csvWriter.flush();
             csvWriter.close();
         } catch (IOException e) {
