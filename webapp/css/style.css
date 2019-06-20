@@ -77,7 +77,7 @@
     position: absolute;
     border-radius: 60%;
     font-size: 16px;
-    margin-left: -38px;
+    margin-left: -40px;
     color: #FFFFFF;
     margin-top: 1px;
     box-shadow: -1px -1px 3px rgba(0, 0, 0, 0.2), -1px 1px 2px rgba(0, 0, 0, 0.2);
@@ -157,7 +157,6 @@ select
 }
 
 .form-regnskab input[type="submit"],
-#hentdata,
 .addbutton
 {
     /*Firefox support*/
@@ -182,7 +181,6 @@ select
 }
 
 .form-regnskab input[type="submit"]:hover,
-#hentdata:hover,
 .topButton:hover
 {
     /*Firefox support*/
@@ -198,7 +196,10 @@ select
 
 }
 
-#hentdata,
+#dateOfPurchaseStart, #dateOfPurchaseEnd, #dateOfPurchase{
+    margin-bottom: -35px;
+}
+
 .addbutton
 {
     float: right;
@@ -268,12 +269,13 @@ select
 
 #indsendKnap
 {
-    filter: brightness(95%);
-    background:#23d160;
+    background: linear-gradient(#12af2f,#23d160);
+    filter: brightness(100%);
+    background:#12af2f;
     float: right;
     display: block;
     text-align: center;
-    border: 2px solid #23d160;
+    border: 2px solid #12af2f;
     padding: 14px 40px;
     outline: none;
     color: white;
@@ -287,16 +289,13 @@ select
 
 #indsendKnap:hover
 {
-    background: linear-gradient(#12af2f,#23d160);
-    mix-blend-mode: darken;
-    background:#12af2f;
-    border: 2px solid #12af2f;
+    background:#23d160;
+    border: 2px solid #23d160;
     color: white;
-    filter: brightness(100%);
+    filter: brightness(110%);
     font-family: Ubuntu, sans-serif;
     font-weight: bold;
     transition: 0.35s;
-
 }
 
 #submitButton
@@ -305,7 +304,38 @@ select
     height: 75px;
 }
 
-/*#showDataForm*/
-/*{*/
-    /*max-width: 1200px;*/
-/*}*/
+#hej{
+    text-align: center;
+    margin: 0 auto;
+    background: linear-gradient(#12af2f,#23d160);
+    filter: brightness(100%);
+    background:#12af2f;
+    float: right;
+    display: block;
+    border: 2px solid #12af2f;
+    padding: 14px 30px;
+    outline: none;
+    color: white;
+    border-radius: 10px;
+    transition: 0.20s;
+    cursor: pointer;
+    font-family: Ubuntu, sans-serif;
+    font-weight: bold;
+}
+
+#hej:hover{
+    background:#23d160;
+    border: 2px solid #23d160;
+    color: white;
+    filter: brightness(110%);
+    font-family: Ubuntu, sans-serif;
+    font-weight: bold;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+#hentDataSumbit{
+    text-align: center;
+    margin-top: 25px;
+    height: 55px;
+}
