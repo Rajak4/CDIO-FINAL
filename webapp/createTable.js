@@ -6,7 +6,7 @@ function createTable() {
         totalPrice += val.price * (val.amount);
         $('#dataTable').append(generateTable(val));
     });
-    $('#dataTable').append(showTotalPrice(totalPrice));
+    $('#tableTotalPrice').append(showTotalPrice(totalPrice));
 }
 
 function generateTable(item) {
@@ -20,6 +20,6 @@ function generateTable(item) {
 }
 
 function showTotalPrice(totalPrice) {
-    return '<hr><tr><td>Pris i alt: </td>' +
-        '<td>' + totalPrice + '</td></tr>'
+    return '<tr><td>Pris i alt:</td>' +
+        '<td>' + totalPrice + " kr. (excl. moms)" + '</td></tr>'
 }

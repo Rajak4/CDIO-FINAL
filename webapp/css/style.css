@@ -262,11 +262,6 @@ select
     box-shadow: inset 0 2px 2px 0 rgba(255, 255, 255, 0.3);
 }
 
-.topButton :hover
-{
-
-}
-
 #indsendKnap
 {
     background: linear-gradient(#12af2f,#23d160);
@@ -339,3 +334,124 @@ select
     margin-top: 25px;
     height: 55px;
 }
+
+.tableClass{
+    width: 700px;
+    alignment: right;
+    font-family: Ubuntu, sans-serif;
+    font-weight: 500;
+    background-color: white;
+}
+.tableHeaders{
+    margin-top: 10px;
+    background-color: white;
+    border-collapse: collapse;
+}
+
+hr {
+    border: 0; solid-color: #4587f4;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.25));
+}
+
+thead tr th {
+    font-family: Ubuntu, sans-serif;
+    font-weight: bold;
+    text-align: left;
+
+    min-width: 50px;
+    color: white;
+    padding: 10px;
+    background-color: rgba(66,135,244,0.9);
+}
+hr tr td{
+    font-family: Ubuntu,sans-serif;
+    font-size: 100px;
+}
+
+tr td{
+    padding: 5px 10px 5px 10px;
+    font-family: Ubuntu, sans-serif;
+
+}
+
+tr:nth-child(odd){
+    background-color: rgba(66,135,244,0.15);
+    font-size: 12px;
+    text-align: left;
+    padding-left: 10px;
+}
+
+tr:first-of-type{
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+}
+tr:nth-child(even) {
+    border-collapse: collapse;
+    background-color: #f2f2f2;
+    font-size: 12px;
+    text-align: left;
+    padding-left: 10px;
+}
+
+
+
+#tableTotalPrice tr td{
+    border-collapse: collapse;
+
+    font-family: Ubuntu, sans-serif;
+    font-weight: 500;
+    background-color: #f2f2f2;
+    text-align: left;
+    color:black;
+    font-size: 17px;
+    padding-right: 0px;
+    border-bottom: none;
+}
+.tablePrice{
+    border-collapse: collapse;
+}
+
+.goToTopBtn{
+
+    display: inline-block;
+    font-family: Ubuntu, sans-serif;
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    background: #3498db;
+    bottom: 25px;
+    right: 25px;
+
+
+    text-decoration: none;
+    text-align: center;
+    vertical-align: center;
+    line-height: 45px;
+    color: white;
+    font-size: 20px;
+    transition: 0.25s;
+}
+
+.goToTopBtn:hover{
+    background-color: rgba(66,135,244,0.5);
+    color: white;
+    border-top: 5px solid #0f81cc;
+    border-left: rgba(66,135,244,0.5);
+    border-right: rgba(66,135,244,0.5);
+    border-bottom: rgba(66,135,244,0.5);
+    line-height: 30px;
+    font-size: 25px;
+    display: block;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+
+
+
+
+
+

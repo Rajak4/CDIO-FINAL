@@ -169,8 +169,6 @@ public class ItemDAOImpl implements IItemDAO {
             System.out.println(item.toString());
         }
 
-        CreateCSV hej2 = new CreateCSV();
-        hej2.create(items);
 
         return items;
     }
