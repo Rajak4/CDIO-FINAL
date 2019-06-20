@@ -12,37 +12,53 @@
     <!--<script src="select2/dist/js/select2.min.js"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
 
-    <script type="text/javascript" src="showData.js"></script>
+    <script type="text/javascript" src="createTable.js"></script>
     <script src="jquery.serialize-object.js"></script>
 
     <!--css for dropdown-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/bulma.min.css">
     <!--CSS for autocomplete dropdown box-->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
     <link rel="shortcut icon" href="img/logo_blue.png">
     <link rel="stylesheet" type="text/css" href="css/style.css">
 
 </head>
-<body>
-<button onclick="sendItemToServer()">hej</button>
+<body onload="createTable()">
 
-<table>
-    <thead>
-    <tr>
-        <td>Produktnavn</td>
-        <td>Pris i kr. (excl. moms)</td>
-        <td>Antal</td>
-        <td>Kategori</td>
-        <td>Købers navn</td>
-        <td>Kommentar</td>
-        <td>Dato for køb</td>
-        <!-- <td>Slet ingrediens<td> -->
-    </tr>
-    </thead>
-    <tbody id="dataTable">
+    <div class="menu">
+        <a href="showData.html"><input type="submit" class="topButton sendButton" value="Gå tilbage"></a>
+    </div>
+    <div class="form-regnskab">
 
-    </tbody>
-</table>
+        <div class="form-title">
+            <h1><img src="img/logo_white.png" style="height: 45px; position: absolute; float: left; margin-top: 12px; margin-left: -35px;">egnskabshjælper</h1>
+        </div>
+
+        <form action="showData.html" id="">
+
+            <div class="section"><span>1</span>Vis data</div>
+
+            <table>
+                <thead>
+                <tr>
+                    <td>Produktnavn</td>
+                    <td>Pris i kr. (excl. moms)</td>
+                    <td>Antal</td>
+                    <td>Kategori</td>
+                    <td>Købers navn</td>
+                    <td>Kommentar</td>
+                    <td>Dato for køb</td>
+                    <!-- <td>Slet ingrediens<td> -->
+                </tr>
+                </thead>
+                <tbody id="dataTable">
+
+                </tbody>
+            </table>
+
+            <input type="submit" value="Gå tilbage">
+        </form>
+    </div>
+
 </body>
 </html>

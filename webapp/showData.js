@@ -1,7 +1,7 @@
 //global array. This way we can create other functions
 //and still use this "categories" array.
-var categoriesSearchArray = [["0","Ingen kategori"]];
-var nameSearchArray = [["1", "Intet navn"]];
+var categoriesSearchArray = [["0","Alle kategorier"]];
+var nameSearchArray = [["1", "Alle navne"]];
 
 //function is executed right after the website is loaded.
 function loadFromServerToSearch() {
@@ -70,44 +70,11 @@ function sendItemToServer() {
         contentType: "application/json",
         data: data,
         success: function (data) {
-               alert("SOVS");
-               console.log("MERE SOVS");
-               var totalPrice = 0;
-            $("#dataTable").empty();
-                $.each(data, function (key, val) {
-                    totalPrice += val.price;
-                    console.log("dataaaaaa:" + JSON.stringify(data));
-                     $('#dataTable').append(generateTable(val));
-                });
-                $('#dataTable').append(showTotalPrice(totalPrice))
+            localStorage.setItem("data", JSON.stringify(data));
+            window.open("table.html", "_self");
         },
         error: function (jqXHR, textStatus, errorThrown) {
             alert(jqXHR.responseText);
         }
     });
-}
-
-// function getTableData() {
-//     $.getJSON('rest/item/getTableData/', function (data) {
-//         $.each(data, function (key, val) {
-//             console.log("dataaaaaa:" + data);
-//             console.log("val: " + val);
-//             $('#dataTable').append(generateTable(val));
-//         });
-//     });
-// }
-
-function generateTable(item) {
-    return '<tr><td>' + item.productName + '</td>' +
-        '<td>' + item.price + '</td>' +
-        '<td>' + item.amount + '</td>' +
-        '<td>' + item.category + '</td>' +
-        '<td>' + item.buyersName + '</td>' +
-        '<td>' + item.comment + '</td>' +
-        '<td>' + item.dateOfPurchase + '</td></tr>'
-}
-
-function showTotalPrice(totalPrice) {
-    return '<hr><tr><td>Pris i alt: </td>' +
-        '<td>' + totalPrice + '</td></tr>'
 }

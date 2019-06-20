@@ -115,13 +115,13 @@ public class ItemDAOImpl implements IItemDAO {
 
         hej.append(" FROM item INNER JOIN category ON item.categoryNumber = category.categoryNumber INNER JOIN users ON purchaser = users.ID");
 
-        if (!purchaserName.equals("Intet navn")) {
+        if (!purchaserName.equals("Alle navne")) {
             hej.append(" WHERE").append(" users.userName = ?");
             test.append("1");
             firstWhere = false;
         } else test.append("0");
 
-        if (!categoryName.equals("Ingen kategori")) {
+        if (!categoryName.equals("Alle kategorier")) {
             hej.append(firstWhere ? " WHERE" : " AND").append(" categoryName = ?");
             test.append("1");
             firstWhere = false;
