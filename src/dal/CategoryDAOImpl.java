@@ -13,7 +13,7 @@ public class CategoryDAOImpl implements ICategoryDAO{
     @Override
     public void createCategory(String name) {
         try {
-            Connection c = MySQL_conn.getInstance().getConnection();
+            Connection c = MySQL_conn.getConnection();
             PreparedStatement prest = c.prepareStatement("insert into category (categoryName) values(?)");
             prest.setString(1, name);
             prest.executeUpdate();
@@ -25,7 +25,7 @@ public class CategoryDAOImpl implements ICategoryDAO{
     @Override
     public String getCategory(int ID) {
         try {
-            Connection c = MySQL_conn.getInstance().getConnection();
+            Connection c = MySQL_conn.getConnection();
             PreparedStatement prest = c.prepareStatement("SELECT * FROM category WHERE ID = ?");
             prest.setInt(1, ID);
             ResultSet result = prest.executeQuery();
@@ -40,7 +40,7 @@ public class CategoryDAOImpl implements ICategoryDAO{
     @Override
     public List<String[]> getCategories() {
         try {
-            Connection c = MySQL_conn.getInstance().getConnection();
+            Connection c = MySQL_conn.getConnection();
             PreparedStatement prest = c.prepareStatement("SELECT * FROM category");
             ResultSet result = prest.executeQuery();
 
