@@ -22,7 +22,7 @@
 
     <!--<script src="select2/dist/js/select2.min.js"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
-    <script type="text/javascript" src="showData.js"></script>
+    <script type="text/javascript" src="script.js"></script>
 
     <!--css for dropdown-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet">
@@ -38,7 +38,7 @@
 
 </head>
 
-<body onload="loadFromServerToSearch()">
+<body onload="loadFromServer(true)">
     <div class="menu">
         <a href="index.html"><input type="submit" class="topButton sendButton" value="Send data"></a>
         <a href="showData.html"><input type="submit" class="topButton receiveButton" value="Hent data"></a>
@@ -50,18 +50,18 @@
             <h1><img src="img/logo_white.png" style="height: 45px; position: absolute; float: left; margin-top: 12px; margin-left: -35px;">egnskabshjælper</h1>
         </div>
 
-        <form onsubmit="sendItemToServer()" id="showDataForm">
+        <form onsubmit="sendItemToServer2()" id="itemForm">
 
             <div class="section"><span>1</span>Datafishing</div>
 
             <div class="section-inside">
 
                 <!--man kan ikke søge, hvis selecten er INDE i label, men det virker, når den er sådan her-->
-                <label for="categorySearch" class="label">Kategori:</label>
-                <select name="categorySearch" id="categorySearch" style="width: 100%;"></select>
+                <label for="category" class="label">Kategori:</label>
+                <select name="category" id="category" style="width: 100%;"></select>
 
-                <label for="buyersNameSearch" class="label">Købers navn:</label>
-                <select name="buyersNameSearch" id="buyersNameSearch" style="width: 100%;"></select>
+                <label for="buyersName" class="label">Købers navn:</label>
+                <select name="buyersName" id="buyersName" style="width: 100%;"></select>
 
 
                 <div class="twoColumns">
@@ -88,7 +88,7 @@
                     </label>
 
                     <label>
-                        <input type="checkbox" name="category" checked> Kategori
+                        <input type="checkbox" name="categoryc" checked> Kategori
                     </label>
 
                     <label>
@@ -120,7 +120,7 @@
 
 <script>
     //this is the searchbar in the dropdown
-    $('#categorySearch').select2();
-    $('#buyersNameSearch').select2();
+    $('#category').select2();
+    $('#buyersName').select2();
 </script>
 </html>

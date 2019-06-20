@@ -4,7 +4,6 @@ function createTable() {
     $("#dataTable").empty();
     $.each(data, function (key, val) {
         totalPrice += val.price * (val.amount);
-        console.log("dataaaaaa:" + JSON.stringify(data));
         $('#dataTable').append(generateTable(val));
     });
     $('#dataTable').append(showTotalPrice(totalPrice));

@@ -1,14 +1,11 @@
 package dto;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class SearchItem {
-    private String categorySearch;
-    private String buyersNameSearch;
+    private String category;
+    private String buyersName;
     private String dateOfPurchaseStart;
     private String dateOfPurchaseEnd;
-    private boolean category;
+    private boolean categoryc;
     private boolean purchaser;
     private boolean productName;
     private boolean price;
@@ -16,27 +13,15 @@ public class SearchItem {
     private boolean comment;
     private boolean dateOfPurchase;
 
+    public SearchItem(){}
 
-    public SearchItem() {
-    }
-
-    public SearchItem(String categorySearch,
-                      String buyersNameSearch,
-                      String dateOfPurchaseStart,
-                      String dateOfPurchaseEnd,
-                      boolean category,
-                      boolean purchaser,
-                      boolean productName,
-                      boolean price,
-                      boolean amount,
-                      boolean comment,
-                      boolean dateOfPurchase
-        ) {
-        this.categorySearch = categorySearch;
-        this.buyersNameSearch = buyersNameSearch;
+    public SearchItem(String category, String buyersName, String dateOfPurchaseStart, String dateOfPurchaseEnd, boolean categoryc, boolean purchaser, boolean productName, boolean price, boolean amount, boolean comment, boolean dateOfPurchase)
+    {
+        this.category = category;
+        this.buyersName = buyersName;
         this.dateOfPurchaseStart = dateOfPurchaseStart;
         this.dateOfPurchaseEnd = dateOfPurchaseEnd;
-        this.category = category;
+        this.categoryc = categoryc;
         this.purchaser = purchaser;
         this.productName = productName;
         this.price = price;
@@ -46,11 +31,11 @@ public class SearchItem {
     }
 
     public String toString() {
-        return "categorySearch=" + categorySearch +
-                " buyersNameSearch=" + buyersNameSearch +
+        return "category=" + category +
+                " buyersName=" + buyersName +
                 " dateStart=" + dateOfPurchaseStart +
                 " dateEnd=" + dateOfPurchaseEnd +
-                " category " + category +
+                " category " + categoryc +
                 " purchaser " + purchaser +
                 " productname " + productName +
                 " price " + price +
@@ -59,38 +44,20 @@ public class SearchItem {
                 " dateOfPurchaser " + dateOfPurchase;
     }
 
-    Item itemObj = new Item();
-
-    List<SearchItem> searchItemList = new ArrayList<>();
-
-    public void addToList(SearchItem searchItem) {
-        searchItemList.add(searchItem);
+    public String getCategory() {
+        return category;
     }
 
-    public List<SearchItem> getItemsByCategory(String category) {
-        List<SearchItem> itemsToReturn = new ArrayList<>();
-        for (SearchItem searchItem : searchItemList) {
-            if (searchItem.getCategorySearch().equals(category)) {
-                itemsToReturn.add(searchItem);
-            }
-        }
-        return itemsToReturn;
+    public void setCategory(String categorySearch) {
+        this.category = categorySearch;
     }
 
-    public String getCategorySearch() {
-        return categorySearch;
+    public String getBuyersName() {
+        return buyersName;
     }
 
-    public void setCategorySearch(String categorySearch) {
-        this.categorySearch = categorySearch;
-    }
-
-    public String getBuyersNameSearch() {
-        return buyersNameSearch;
-    }
-
-    public void setBuyersNameSearch(String buyersNameSearch) {
-        this.buyersNameSearch = buyersNameSearch;
+    public void setBuyersName(String buyersName) {
+        this.buyersName = buyersName;
     }
 
     public String getDateOfPurchaseStart() {
@@ -109,12 +76,12 @@ public class SearchItem {
         this.dateOfPurchaseEnd = dateOfPurchaseEnd;
     }
 
-    public boolean isCategory() {
-        return category;
+    public boolean isCategoryc() {
+        return categoryc;
     }
 
-    public void setCategory(boolean category) {
-        this.category = category;
+    public void setCategoryc(boolean category) {
+        this.categoryc = category;
     }
 
     public boolean isPurchaser() {

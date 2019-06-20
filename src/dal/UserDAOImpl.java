@@ -8,23 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDAOImpl implements IUserDAO{
-
-    @Override
-    public String getUser(int ID) {
-        try {
-            Connection c = MySQL_conn.getConnection();
-            PreparedStatement prest = c.prepareStatement("SELECT * FROM users WHERE ID = ?");
-            prest.setInt(1, ID);
-            ResultSet result = prest.executeQuery();
-
-            if (result.next()) return result.getString("userName");
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
     @Override
     public List<String[]> getUsers() {
         try {

@@ -4,11 +4,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class MySQL_conn {
+class MySQL_conn {
 
     private static Connection connection = null;
 
-    public static Connection getConnection() throws SQLException {
+    static Connection getConnection() throws SQLException {
         try {
 
             if (connection != null && !connection.isClosed() && connection.isValid(1)) {
@@ -26,19 +26,5 @@ public class MySQL_conn {
             e.printStackTrace();
         }
         return null;
-    }
-
-    public static class DALException extends Exception {
-        //Til Java serialisering...
-        private static final long serialVersionUID = 7355418246336739229L;
-
-        public DALException(String msg, Throwable e) {
-            super(msg, e);
-        }
-
-        public DALException(String msg) {
-            super(msg);
-        }
-
     }
 }

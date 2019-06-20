@@ -3,7 +3,6 @@ package dal;
 import dto.Item;
 import dto.SearchItem;
 
-import javax.xml.transform.Result;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,39 +38,6 @@ public class ItemDAOImpl implements IItemDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public void deleteItem(int ID) throws SQLException {
-        Connection c = MySQL_conn.getConnection();
-        PreparedStatement prest = c.prepareStatement("delete from item where ID = ?");
-        prest.setInt(1, ID);
-        prest.executeUpdate();
-    }
-
-    @Override
-    public void updateItem(int ID, Item item) {
-
-    }
-
-    @Override
-    public Item getItem(int ID) throws SQLException {
-        Connection c = MySQL_conn.getConnection();
-        PreparedStatement prest = c.prepareStatement("SELECT item.productName, item.price, item.amount, item.dateOfPurchase, users.userName as nameOfPurchaser, item.comment, category.categoryName as categoryName FROM item INNER JOIN category ON item.categoryNumber = category.categoryNumber INNER JOIN users ON purchaser = users.ID WHERE ID = ?;");
-        prest.setInt(1, ID);
-        ResultSet result = prest.executeQuery();
-
-        Item item = new Item();
-        if (result.next()) {
-            item.setProductName(result.getString("productName"));
-            item.setPrice(result.getInt("price"));
-            item.setAmount(result.getInt("amount"));
-            item.setDateOfPurchase(result.getString("dateOfPurchase"));
-            item.setBuyersName(result.getString("nameOfPurchaser"));
-            item.setComment(result.getString("comment"));
-            item.setCategory(result.getString("categoryName"));
-        }
-        return item;
     }
 
     @Override
@@ -121,6 +87,8 @@ public class ItemDAOImpl implements IItemDAO {
             firstWhere = false;
         } else test.append("0");
 
+        System.out.println(categoryName);
+
         if (!categoryName.equals("Alle kategorier")) {
             hej.append(firstWhere ? " WHERE" : " AND").append(" categoryName = ?");
             test.append("1");
@@ -146,11 +114,7 @@ public class ItemDAOImpl implements IItemDAO {
 
         Connection c = MySQL_conn.getConnection();
         List<Item> items = new ArrayList<>();
-        System.out.println("HEJ -1");
-
         PreparedStatement prest = c.prepareStatement(hej.toString());
-
-        System.out.println("HEJ 0");
 
 
         int curPos = 1;
@@ -170,13 +134,10 @@ public class ItemDAOImpl implements IItemDAO {
         if(test.charAt(3) == '1') {
             prest.setDate(curPos, java.sql.Date.valueOf(date2));
         }
-        System.out.println(prest.toString());
-
-
-        //PreparedStatement prest = c.prepareStatement("SELECT item.productName, item.price, item.amount, item.dateOfPurchase, users.userName as nameOfPurchaser, item.comment, category.categoryName as categoryName FROM item INNER JOIN category ON item.categoryNumber = category.categoryNumber INNER JOIN users ON purchaser = users.ID");
         ResultSet result = prest.executeQuery();
 
-        System.out.println("HEJ 2");
+        System.out.println(prest.toString());
+
         while (result.next()) {
             Item item = new Item();
 
@@ -190,7 +151,7 @@ public class ItemDAOImpl implements IItemDAO {
                 item.setProductName(result.getString("productName"));
             }
             if (price) {
-                item.setPrice(result.getInt("price"));
+                item.setPrice(result.getDouble("price"));
             }
 
             if (amount) {
@@ -209,61 +170,13 @@ public class ItemDAOImpl implements IItemDAO {
             System.out.println(item.toString());
         }
 
-        System.out.println("HEJ 3");
         return items;
     }
 
     @Override
     public List<Item> getItems(SearchItem item) throws SQLException {
-        return getItems(item.isCategory(), item.isPurchaser(), item.isProductName(), item.isPrice(), item.isAmount(), item.isDateOfPurchase(), item.isComment(), item.getBuyersNameSearch(), item.getCategorySearch().replaceAll(".* - ", ""), item.getDateOfPurchaseStart(), item.getDateOfPurchaseEnd());
-    }
-
-    @Override
-    public List<Item> getItems() throws SQLException {
-        Connection c = MySQL_conn.getConnection();
-        List<Item> items = new ArrayList<>();
-        Statement st = c.createStatement();
-        ResultSet result = st.executeQuery("select * from item");
-        while (result.next()) {
-            Item item = new Item();
-            item.setCategory("Not rdy");
-            item.setProductName(result.getString("productName"));
-            item.setPrice(result.getInt("price"));
-            item.setAmount(result.getInt("amount"));
-            item.setDateOfPurchase(result.getDate("dateOfPurchase").toString());
-            item.setBuyersName(result.getString("nameOfPurchaser"));
-            item.setComment(result.getString("comment"));
-
-            items.add(item);
-        }
-        return items;
-    }
-
-    @Override
-    public List<Item> searchForCategoryDB(SearchItem searchItem) throws SQLException {
-        Connection c = MySQL_conn.getConnection();
-        List<Item> items = new ArrayList<>();
-        String sqlString = "select productName, price, amount, cat.categoryName, u.userName, comment, dateOfPurchase from item i inner join category cat on i.categoryNumber = cat.categoryNumber inner join users u on i.purchaser = u.ID where";
-        String and = "and";
-        String categoryName = " cat.categoryName = ? ";
-        String purchaser = " u.userName = ? ";
-        PreparedStatement prest = c.prepareStatement(
-                sqlString + categoryName);
-
-        prest.setString(1, searchItem.getCategorySearch().replaceAll(".*,", ""));
-        ResultSet result = prest.executeQuery();
-        while(result.next()) {
-            Item item = new Item();
-            item.setProductName(result.getString("productName"));
-            item.setPrice(result.getDouble("price"));
-            item.setAmount(result.getInt("amount"));
-            item.setCategory(result.getString("cat.categoryName"));
-            item.setBuyersName(result.getString("u.userName"));
-            item.setComment(result.getString("comment"));
-            item.setDateOfPurchase(result.getString("dateOfPurchase"));
-            items.add(item);
-        }
-        return items;
+        System.out.println(item.toString());
+        return getItems(item.isCategoryc(), item.isPurchaser(), item.isProductName(), item.isPrice(), item.isAmount(), item.isDateOfPurchase(), item.isComment(), item.getBuyersName(), item.getCategory().replaceAll(".* - ", ""), item.getDateOfPurchaseStart(), item.getDateOfPurchaseEnd());
     }
 
 }

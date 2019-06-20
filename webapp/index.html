@@ -40,7 +40,7 @@
 
 </head>
 
-<body onload="loadFromServer()">
+<body onload="loadFromServer(false)">
 <div class="menu">
     <a href="index.html"><input type="submit" class="topButton sendButton" value="Send data"></a>
     <a href="showData.html"><input type="submit" class="topButton receiveButton" style="float: right;" value="Hent data"></a>
@@ -50,7 +50,7 @@
             <h1><img src="img/logo_white.png" style="height: 45px; position: absolute; float: left; margin-top: 12px; margin-left: -35px;">egnskabshjælper</h1>
         </div>
 
-        <form onsubmit="sendItemToServer()" id="itemForm">
+        <form id="itemForm">
 
             <div class="section"><span>1</span>Produkt information</div>
             <div class="section-inside">
@@ -111,8 +111,13 @@
     </div>
 
 </body>
-
     <script>
+        $(document).ready(function () {
+            $('#itemForm').submit(function (event) {
+                event.preventDefault();
+                sendItemToServer();
+            })
+        })
         //this is the searchbar in the dropdown
         $('#category').select2();
         $('#buyersName').select2();
