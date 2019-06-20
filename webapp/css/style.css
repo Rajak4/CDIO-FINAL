@@ -147,12 +147,13 @@ select
 }
 
 .selector_knap .addbutton {
-    display: inline-block;
-    float: right;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin: 0 auto;
     height: 28px;
     width: 28px;
-    padding: 0px;
+    padding: 2px;
 }
 
 .form-regnskab input[type="submit"],
@@ -166,7 +167,6 @@ select
     /*Safari support*/
     -webkit-box-shadow: inset 0 2px 2px 0 rgba(255, 255, 255, 0.3);
     -webkit-border-radius: 5px;
-
 
     background: #4587f4;
     padding: 8px 20px 8px 20px;
@@ -183,7 +183,6 @@ select
 
 .form-regnskab input[type="submit"]:hover,
 #hentdata:hover,
-.addbutton:hover,
 .topButton:hover
 {
     /*Firefox support*/
@@ -204,6 +203,27 @@ select
 {
     float: right;
 }
+.addbutton span{
+    font-family: Ubuntu;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.addbutton:hover span
+{
+    font-family: Ubuntu;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Ubuntu;
+    -webkit-transition: all 0.15s;
+    -moz-transition: all 0.15s;
+    -ms-transition: all 0.15s;
+    -o-transition: all 0.15s;
+    transition: all 0.15s;
+    font-size: 20px;
+
+}
 
 .twoColumns label
 {
@@ -221,7 +241,8 @@ select
 {
     background-color: white;
     alignment: center;
-    padding-left: 37%;
+    width: 550px;
+
     margin: auto;
 }
 
@@ -235,7 +256,7 @@ select
     height: 38px;
     margin-top: 7px;
     margin-bottom: -50px;
-    width: 20%;
+    width: 49%;
     border-radius: 7px;
     box-shadow: inset 0 2px 2px 0 rgba(255, 255, 255, 0.3);
 }
@@ -247,6 +268,40 @@ select
 
 #indsendKnap
 {
-    margin-left: 72.2%;
-    background-color: #12af2f;
+    filter: brightness(95%);
+    background:#23d160;
+    float: right;
+    display: block;
+    text-align: center;
+    border: 2px solid #23d160;
+    padding: 14px 40px;
+    outline: none;
+    color: white;
+    border-radius: 10px;
+    transition: 0.20s;
+    cursor: pointer;
+    font-family: Ubuntu, sans-serif;
+    font-weight: bold;
+
 }
+
+#indsendKnap:hover
+{
+    background: linear-gradient(#12af2f,#23d160);
+    mix-blend-mode: darken;
+    background:#12af2f;
+    border: 2px solid #12af2f;
+    color: white;
+    filter: brightness(100%);
+    font-family: Ubuntu, sans-serif;
+    font-weight: bold;
+    transition: 0.35s;
+
+}
+
+#submitButton
+{
+    margin: 1px;
+    height: 75px;
+}
+

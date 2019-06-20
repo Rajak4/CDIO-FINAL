@@ -43,7 +43,7 @@
 <body onload="loadFromServer()">
 <div class="menu">
     <a href="index.html"><input type="submit" class="topButton sendButton" value="Send data"></a>
-    <a href="showData.html"><input type="submit" class="topButton receiveButton" value="Hent data"></a>
+    <a href="showData.html"><input type="submit" class="topButton receiveButton" style="float: right;" value="Hent data"></a>
 </div>
     <div class="form-regnskab">
         <div class="form-title">
@@ -59,7 +59,7 @@
                 <label for="category" class="label">Kategori:</label>
                 <div class="selector_knap">
                     <select name="category" id="category" required></select>
-                    <a onclick="addCategoryButton()"><button onclick="addCategoryButton()" type="button" class="addbutton">+</button></a>
+                    <a onclick="addCategoryButton()"><button onclick="addCategoryButton()" type="button" class="addbutton"><span>+</span></button></a>
                 </div>
 
                 <!--<button onclick="deleteCategory()" style="background-color: #ff0537">Slet kategori</button>-->
@@ -94,7 +94,7 @@
                 <label for="buyersName" class="label">Købers navn:</label>
                 <div class="selector_knap">
                     <select name="buyersName" id="buyersName" required></select>
-                    <a onclick="addUserButton()"><button onclick="addUserButton()" type="button" class="addbutton">+</button></a>
+                    <a onclick="addUserButton()"><button onclick="addUserButton()" type="button" class="addbutton"><span>+</span></button></a>
                 </div>
                 <!--<button onclick="deleteBuyer()" style="background-color: #ff0537">Slet køber</button>-->
 
@@ -103,7 +103,10 @@
                 </label>
             </div>
 
-            <input type="submit" id="indsendKnap" value="Indsend">
+            <div id="submitButton">
+                <input type="submit" id="indsendKnap" value="Indsend"/>
+            </div>
+
         </form>
     </div>
 
