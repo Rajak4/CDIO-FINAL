@@ -113,10 +113,18 @@ public class ItemService {
     public List<Item> getShowData(SearchItem data) throws SQLException {
         System.out.println(data);
 
-        String category = data.getCategorySearch().replaceAll(".*,", "");
+        String categorySearch = data.getCategorySearch().replaceAll(".*,", "");
         String name = data.getBuyersNameSearch().replaceAll(".*,", "");
         String startDate = data.getDateOfPurchaseStart();
         String endDate = data.getDateOfPurchaseEnd();
+        boolean category = data.isCategory();
+        boolean purchaser= data.isPurchaser();
+        boolean productName = data.isProductName();
+        boolean price = data.isPrice();
+        boolean amount = data.isAmount();
+        boolean comment = data.isComment();
+        boolean dateOfPurchase = data.isDateOfPurchase();
+
 //        boolean start = false;
 //        boolean end = false;
 //
@@ -135,7 +143,7 @@ public class ItemService {
 //
 //        }
 
-        itemsToReturn = itemDAO.searchForCategoryDB(data);
+        itemsToReturn = itemDAO.getItems(data);
 
         return itemsToReturn;
     }

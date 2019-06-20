@@ -1,19 +1,27 @@
 //global array. This way we can create other functions
 //and still use this "categories" array.
-var categoriesSearchArray = ["Ingen kategori"];
-var nameSearchArray = ["Intet navn"];
+var categoriesSearchArray = [["0","Ingen kategori"]];
+var nameSearchArray = [["1", "Intet navn"]];
 
 //function is executed right after the website is loaded.
 function loadFromServerToSearch() {
+    loadCategories();
+    loadBuyers();
+}
+
+function loadCategories() {
     $.getJSON("rest/item/getCategory/", function (data) {
         $.each(data, function (key, val) {
             //adding values to the global array
-            console.log("Data: " + data);
             categoriesSearchArray.push(val);
         });
-        console.log(categoriesSearchArray);
         makeCatSearchDropdown(categoriesSearchArray);
     });
+
+    console.log(categoriesSearchArray);
+}
+
+function loadBuyers(){
     $.getJSON("rest/item/getBuyerNames/", function (data) {
         $.each(data, function (key, name) {
             console.log(key + ": " + name);
@@ -29,11 +37,12 @@ function makeCatSearchDropdown(data) {
     var dropdown = document.getElementById("categorySearch");
     console.log(data);
     //we loop over the data in jsonArray.
-    $.each(data, function (key, val) {
+    $.each(data, function (key, val) {;
+        var catString = (val[0] + " - " + val[1]);
         //creating our dropdown list of the data in the array
         var opt = document.createElement("option");
-        opt.text = val;
-        opt.value = val;
+        opt.text = catString;
+        opt.value = catString;
         dropdown.add(opt);
     })
 }
@@ -41,9 +50,10 @@ function makeCatSearchDropdown(data) {
 function makeNameSearchDropdown(data) {
     var dropdown = document.getElementById("buyersNameSearch");
     $.each(data, function (key, name) {
+        var nameAndNum = name[1];
         var opt = document.createElement("option");
-        opt.text = name;
-        opt.value = name;
+        opt.text = nameAndNum;
+        opt.value = nameAndNum;
         dropdown.add(opt);
     })
 }
