@@ -1,5 +1,6 @@
 package dal;
 
+import dto.CreateCSV;
 import dto.Item;
 import dto.SearchItem;
 
@@ -87,8 +88,6 @@ public class ItemDAOImpl implements IItemDAO {
             firstWhere = false;
         } else test.append("0");
 
-        System.out.println(categoryName);
-
         if (!categoryName.equals("Alle kategorier")) {
             hej.append(firstWhere ? " WHERE" : " AND").append(" categoryName = ?");
             test.append("1");
@@ -170,13 +169,17 @@ public class ItemDAOImpl implements IItemDAO {
             System.out.println(item.toString());
         }
 
+        CreateCSV hej2 = new CreateCSV();
+        hej2.create(items);
+
         return items;
     }
 
     @Override
     public List<Item> getItems(SearchItem item) throws SQLException {
-        System.out.println(item.toString());
         return getItems(item.isCategoryc(), item.isPurchaser(), item.isProductName(), item.isPrice(), item.isAmount(), item.isDateOfPurchase(), item.isComment(), item.getBuyersName(), item.getCategory().replaceAll(".* - ", ""), item.getDateOfPurchaseStart(), item.getDateOfPurchaseEnd());
     }
+
+
 
 }
