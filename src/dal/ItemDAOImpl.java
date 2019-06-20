@@ -1,5 +1,6 @@
 package dal;
 
+import dto.CreateCSV;
 import dto.Item;
 import dto.SearchItem;
 
@@ -209,7 +210,9 @@ public class ItemDAOImpl implements IItemDAO {
             System.out.println(item.toString());
         }
 
-        System.out.println("HEJ 3");
+        CreateCSV hej2 = new CreateCSV();
+        hej2.create(items);
+
         return items;
     }
 
@@ -236,6 +239,7 @@ public class ItemDAOImpl implements IItemDAO {
 
             items.add(item);
         }
+
         return items;
     }
 
@@ -263,7 +267,25 @@ public class ItemDAOImpl implements IItemDAO {
             item.setDateOfPurchase(result.getString("dateOfPurchase"));
             items.add(item);
         }
+        //updateSheets("select * from item");
+        updateSheets("" + sqlString + categoryName);
         return items;
     }
+
+    public void updateSheets(String stm){
+        try{
+            Connection c = MySQL_conn.getConnection();
+            Statement st = c.createStatement();
+
+            st.executeQuery("USE u748359586_02324;");
+            st.executeQuery("SET SQL_SAFE_UPDATES = 0;");
+            st.executeQuery("UPDATE query SET string = " + stm +";" );
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+
+    }
+
 
 }
