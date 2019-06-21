@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+
+    <!-- Favicon & page info-->
+    <link rel="shortcut icon" href="img/logo_blue.png">
+    <meta charset="UTF-8">
+    <title>Regnskabshjælper</title>
+
+    <!-- JQuery -->
+    <script src="jquery-3.1.1.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="jquery.serialize-object.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!--<script src="select2/dist/js/select2.min.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+
+    <!--css for dropdown-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet">
+
+    <!-- Page CSS -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" type="text/css" rel="stylesheet">
+
+    <!-- Sweetalert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
+
+</head>
+
+<body onload="loadFromServer(false)">
+<div class="menu">
+    <a href="index.html"><input type="submit" class="topButton" style="background-color: #3742fa;" value="Send data"></a>
+    <a href="showData.html"><input type="submit" class="topButton" style="float: right;" value="Hent data"></a>
+</div>
+
+<div class="form-regnskab">
+
+    <div class="form-title">
+        <h1><img src="img/logo_white.png" style="height: 45px; position: absolute; float: left; margin-top: 12px; margin-left: -35px;">egnskabshjælper</h1>
+    </div>
+
+        <form id="itemForm">
+
+        <div class="section"><span>1</span>Produkt information</div>
+        <div class="section-inside">
+
+            <!--man kan ikke søge, hvis selecten er INDE i label, men det virker, når den er sådan her-->
+            <label for="category" class="label">Kategori:</label>
+            <div class="selector_knap">
+                <select name="category" id="category" required></select>
+                <a onclick="addCategoryButton()"><button onclick="addCategoryButton()" type="button" class="addbutton"><span>+</span></button></a>
+            </div>
+
+            <!--<button onclick="deleteCategory()" style="background-color: #ff0537">Slet kategori</button>-->
+
+            <label for="productName" class="label">Produkt navn:
+                <input id="productName" type="text" placeholder="Indtast produktnavn her..." class="input" maxlength="45" name="productName" required>
+            </label>
+
+            <div class="twoColumns">
+                <label for="price" class="label">Pris i kr. (excl. moms):
+                    <input id="price" type="number" placeholder="Indtast pris her..." min="1" name="price" required>
+                </label>
+                <label for="amount" class="label" style="float: right">Antal:
+                    <input id="amount" type="number" min="1" value="1" placeholder="Indtast mindst 1 her" name="amount" required>
+                </label>
+            </div>
+            <div>
+                <label for="dateOfPurchase" class="label">Dato for køb:
+                    <input id="dateOfPurchase" type="date" name="dateOfPurchase" required>
+                </label>
+            </div>
+        </div>
+
+        <div class="section"><span>2</span>Købers information</div>
+
+        <div class="section-inside">
+            <!--<label for="buyersName" class="label">Købers navn:-->
+            <!--<input id="buyersName" type="text" maxlength="45" placeholder="Mogens Pedersen" name="buyersName" required>-->
+            <!--</label>-->
+
+
+            <label for="buyersName" class="label">Købers navn:</label>
+            <div class="selector_knap">
+                <select name="buyersName" id="buyersName" required></select>
+                <a onclick="addUserButton()"><button onclick="addUserButton()" type="button" class="addbutton"><span>+</span></button></a>
+            </div>
+            <!--<button onclick="deleteBuyer()" style="background-color: #ff0537">Slet køber</button>-->
+
+            <label for="comment" class="label">Kommentar:
+                <textarea id="comment" name="comment" maxlength="105" class="textarea" placeholder="Indtast kommentar her..." required></textarea>
+            </label>
+        </div>
+
+        <div id="submitButton">
+            <input type="submit" id="indsendKnap" value="Indsend"/>
+        </div>
+
+    </form>
+</div>
+
+</body>
+    <script>
+        $(document).ready(function () {
+            $('#itemForm').submit(function (event) {
+                event.preventDefault();
+                sendItemToServer();
+            })
+        })
+        //this is the searchbar in the dropdown
+        $('#category').select2();
+        $('#buyersName').select2();
+    </script>
+</html>

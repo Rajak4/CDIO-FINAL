@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Data</title>
+
+    <script src="jquery-3.1.1.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <!--<script src="select2/dist/js/select2.min.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+
+    <script type="text/javascript" src="createTable.js"></script>
+    <script src="jquery.serialize-object.js"></script>
+
+    <!--CSS for autocomplete dropdown box-->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel="shortcut icon" href="img/logo_blue.png">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" type="text/css" rel="stylesheet">
+
+</head>
+<body onload="generateTableNew()">
+
+<a class="goToTopBtn" href="#"> <span>^</span></a>
+
+<div class="menu">
+    <a href="showData.html"><input type="submit" class="topButton" id="goBackFromData" value="Gå tilbage"></a>
+    <a href="Regnskab.csv"><input type="submit" class="topButton" id ="download" style="float: right; " value="Download til .CSV"></a>
+</div>
+<div class="form-regnskab tableClass">
+
+    <div class="form-title">
+        <h1><img src="img/logo_white.png" style="height: 45px; position: absolute; float: left; margin-top: 12px; margin-left: -35px;">egnskabshjælper</h1>
+    </div>
+
+    <form action="showData.html" id="showDataFormTable">
+
+        <div class="section"><span>1</span>Data</div>
+
+        <div id="dynamicTable">
+
+        </div>
+
+        <div >
+            <table class = "tablePrice">
+                <hr>
+                <tbody id="tableTotalPrice">
+
+                </tbody>
+            </table>
+        </div>
+
+
+    </form>
+
+
+</div>
+
+</body>
+</html>

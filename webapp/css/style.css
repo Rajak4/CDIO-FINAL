@@ -1,0 +1,486 @@
+.form-regnskab
+{
+    /* safari support */
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    -webkit-border-radius: 10px;
+
+    /*firefox support*/
+    -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    -moz-border-radius: 10px;
+
+
+    width: 550px;
+    padding: 20px;
+    margin: 30px auto;
+    background: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+}
+
+.modal-notify .modal-header {
+    border-radius: 3px 3px 0 0;
+}
+.modal-notify .modal-content {
+    border-radius: 3px;
+}
+.form-title
+{
+    text-align: center;
+}
+
+.form-regnskab h1
+{
+    /* safari support */
+    -webkit-box-shadow: inset 0 2px 2px 0 rgba(255, 255, 255, 0.2);
+    -webkit-border-radius: 10px 10px 0 0;
+
+    /*firefox support*/
+    -moz-box-shadow: inset 0 2px 2px 0 rgba(255, 255, 255, 0.2);
+    -moz-border-radius: 10px 10px 0 0;
+
+
+    background: #4587f4;
+    padding: 20px 20px 30px 20px;
+    margin: -20px -20px -20px -20px;
+    border-radius: 10px 10px 0 0;
+    color: #ffffff;
+    box-shadow: inset 0 2px 2px 0 rgba(255, 255, 255, 0.2);
+    border: 1px solid #257C9E;
+    font: bold 36px 'Ubuntu', sans-serif;
+}
+
+.form-regnskab .section
+{
+    font: bold 25px 'Ubuntu', sans-serif;
+    color: #4587f4;
+    margin-bottom: -50px;
+    margin-left: -20px;
+    padding: 50px 25px;
+}
+
+.form-regnskab .section-inside
+{
+    margin-left: 5px;
+}
+
+.form-regnskab .section span
+{
+    /*firefox support*/
+    -moz-border-radius: 60%;
+
+    /*Safari support*/
+    -webkit-border-radius: 60%;
+
+    background: #4587f4;
+    padding: 5px 10px 5px 10px;
+    position: absolute;
+    border-radius: 60%;
+    font-size: 16px;
+    margin-left: -40px;
+    color: #FFFFFF;
+    margin-top: 1px;
+    box-shadow: -1px -1px 3px rgba(0, 0, 0, 0.2), -1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.form-regnskab label
+{
+    display: block;
+    font: 16px Ubuntu, sans-serif;
+    color: #0a0a0a;
+    margin-top: 20px;
+    padding-top: 5px;
+    /*margin-bottom: 50px;*/
+}
+
+.form-regnskab input[type="text"],
+.form-regnskab input[type="date"],
+.form-regnskab input[type="number"],
+.form-regnskab textarea,
+input[type="text"],
+select
+{
+    /*Firefox support*/
+    -moz-border-radius: 5px;
+    -moz-box-sizing: border-box;
+
+    /*Safari support*/
+    -webkit-border-radius: 5px;
+    -webkit-box-sizing: border-box;
+
+    margin-top: 5px;
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    border-radius: 20px;
+    border: 2px solid #FFFFFF;
+    box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.2), inset -1px -1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header
+{
+    height: 50px;
+    background-color: blue;
+}
+
+.modal {
+
+}
+
+.form-regnskab textarea
+{
+    height: 100px;
+}
+
+.form-regnskab .selector_knap
+{
+    width: 100%;
+}
+
+.selector_knap select{
+    width: 93%;
+    display: inline-block;
+    float: left;
+}
+
+.selector_knap .addbutton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    height: 28px;
+    width: 28px;
+    padding: 2px;
+}
+
+.form-regnskab input[type="submit"],
+.addbutton
+{
+    /*Firefox support*/
+    -moz-border-radius: 5px;
+    -moz-box-shadow: inset 0 2px 2px 0 rgba(255, 255, 255, 0.3);
+
+    /*Safari support*/
+    -webkit-box-shadow: inset 0 2px 2px 0 rgba(255, 255, 255, 0.3);
+    -webkit-border-radius: 5px;
+
+
+    font-family: Ubuntu, sans-serif;
+    background: #4587f4;
+    padding: 8px 20px 8px 20px;
+    border-radius: 5px;
+    color: #FFFFFF;
+    /*font: normal 30px 'bitter', serif;*/
+    box-shadow: inset 0 2px 2px 0 rgba(255, 255, 255, 0.3);
+    border: 1px solid #257C9E;
+    font-size: 15px;
+    vertical-align: auto;
+    margin-top: 20px;
+    width: 140px;
+    text-align: center;
+}
+
+.form-regnskab input[type="submit"]:hover,
+.topButton:hover
+{
+    /*Firefox support*/
+    -moz-box-shadow: inset 0 2px 2px 0 rgba(255, 255, 255, 0.3);
+
+    /*Safari support*/
+    -webkit-box-shadow: inset 0 2px 2px 0 rgba(255, 255, 255, 0.3);
+
+
+    background: #4562f4;
+    cursor: pointer;
+    box-shadow: inset 0 2px 2px 0 rgba(255, 255, 255, 0.3);
+
+}
+
+#dateOfPurchaseStart, #dateOfPurchaseEnd, #dateOfPurchase{
+    margin-bottom: -35px;
+}
+
+.addbutton
+{
+    float: right;
+}
+
+.twoColumns label
+{
+    display: inline-block;
+    width: 48%;
+}
+
+.fourColumns label
+{
+    display: inline-block;
+    width: 30%;
+}
+
+.menu
+{
+    background-color: white;
+    alignment: center;
+    width: 550px;
+
+    margin: auto;
+}
+
+.topButton
+{
+    /*margin: auto;*/
+    background: #4587f4;
+    color: #FFFFFF;
+    display: inline-block;
+    float: top;
+    height: 38px;
+    margin-top: 7px;
+    margin-bottom: -50px;
+    width: 49%;
+    border-radius: 7px;
+    box-shadow: inset 0 2px 2px 0 rgba(255, 255, 255, 0.3);
+}
+
+#goBackFromData{
+    display: inline-block;
+    font-family: Ubuntu, sans-serif;
+    font-size: 15px;
+    transition: 0.15s;
+}
+
+#goBackFromData:hover{
+    display: inline-block;
+    font-family: Ubuntu, sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+
+}
+
+#download{
+    display: inline-block;
+    font-family: Ubuntu, sans-serif;
+    background-color: #23d160;
+    font-size: 15px;
+    transition: 0.15s;
+}
+
+#download:hover{
+    display: inline-block;
+    font-family: Ubuntu, sans-serif;
+    background-color: springgreen;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+#indsendKnap
+{
+    background: linear-gradient(#12af2f,#23d160);
+    filter: brightness(100%);
+    background:#12af2f;
+    float: right;
+    display: block;
+    text-align: center;
+    border: 2px solid #12af2f;
+    padding: 14px 40px;
+    outline: none;
+    color: white;
+    border-radius: 10px;
+    transition: 0.20s;
+    cursor: pointer;
+    font-family: Ubuntu, sans-serif;
+    font-weight: bold;
+}
+
+#indsendKnap:hover
+{
+    background:#23d160;
+    border: 2px solid #23d160;
+    color: white;
+    filter: brightness(110%);
+    font-family: Ubuntu, sans-serif;
+    font-weight: bold;
+    transition: 0.35s;
+}
+
+#submitButton
+{
+    margin: 1px;
+    height: 75px;
+}
+
+#showDataBTN{
+    text-align: center;
+    margin: 0 auto;
+    background: linear-gradient(#12af2f,#23d160);
+    filter: brightness(100%);
+    background:#12af2f;
+    float: right;
+    display: block;
+    border: 2px solid #12af2f;
+    padding: 14px 30px;
+    outline: none;
+    color: white;
+    border-radius: 10px;
+    transition: 0.20s;
+    cursor: pointer;
+    font-family: Ubuntu, sans-serif;
+    font-weight: bold;
+}
+
+#showDataBTN:hover{
+    background:#23d160;
+    border: 2px solid #23d160;
+    color: white;
+    filter: brightness(110%);
+    font-family: Ubuntu, sans-serif;
+    font-weight: bold;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+#hentDataSumbit{
+    font-family: Ubuntu, sans-serif;
+    text-align: center;
+    margin-top: 25px;
+    height: 55px;
+    transition: 0.25s;
+}
+
+#hentDataSumbit:hover{
+    text-align: center;
+    font-size: 17px;
+}
+
+.tableClass{
+    width: 700px;
+    alignment: right;
+    font-family: Ubuntu, sans-serif;
+    font-weight: 500;
+    background-color: white;
+}
+.tableHeaders{
+    margin-top: 10px;
+    background-color: white;
+    border-collapse: collapse;
+}
+
+hr {
+    border: 0; solid-color: #4587f4;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.25));
+}
+
+thead tr th {
+    font-family: Ubuntu, sans-serif;
+    font-weight: bold;
+    text-align: left;
+
+    min-width: 50px;
+    color: white;
+    padding: 10px;
+    background-color: rgba(66,135,244,0.9);
+}
+hr tr td{
+    font-family: Ubuntu,sans-serif;
+    font-size: 100px;
+}
+
+tr td{
+    padding: 5px 10px 5px 10px;
+    font-family: Ubuntu, sans-serif;
+
+}
+
+tr:nth-child(odd){
+    background-color: rgba(66,135,244,0.15);
+    font-size: 12px;
+    text-align: left;
+    padding-left: 10px;
+}
+
+tr:first-of-type{
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+}
+tr:nth-child(even) {
+    border-collapse: collapse;
+    background-color: #f2f2f2;
+    font-size: 12px;
+    text-align: left;
+    padding-left: 10px;
+}
+
+#tableTotalPrice tr td{
+    border-collapse: collapse;
+
+    font-family: Ubuntu, sans-serif;
+    font-weight: 500;
+    background-color: #f2f2f2;
+    text-align: left;
+    color:black;
+    font-size: 17px;
+    padding-right: 0px;
+    border-bottom: none;
+}
+.tablePrice{
+    border-collapse: collapse;
+}
+
+.goToTopBtn{
+
+    display: inline-block;
+    font-family: Ubuntu, sans-serif;
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    background: #3498db;
+    bottom: 25px;
+    right: 25px;
+
+
+    text-decoration: none;
+    text-align: center;
+    vertical-align: center;
+    line-height: 45px;
+    color: white;
+    font-size: 20px;
+    transition: 0.25s;
+}
+
+.goToTopBtn:hover{
+    background-color: rgba(66,135,244,0.9);
+    color: white;
+    height: 45px;
+    border-top: 2px solid rgba(66,135,244,0.5);
+    line-height: 30px;
+    text-align: center;
+    vertical-align: top;
+    font-size: 25px;
+    display: inline-block;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+.addbutton span{
+    font-family: Ubuntu, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: center;
+}
+.addbutton:hover span
+{
+    font-family: Ubuntu, serif;
+    display: inline-block;!important;
+    font-size: 20px;
+}
+
+
+
+
+
+
+
