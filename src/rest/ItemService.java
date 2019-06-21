@@ -65,7 +65,7 @@ public class ItemService{
         System.out.println("test ja " + category);
         String buyersName = (jsonObject.getString("buyersName")).replaceAll(".* - ", "");
 
-        //creating an item and adding it to the array
+        //creating an item and adding it to the database
         Item item = new Item(
                 category,
                 jsonObject.getString("productName"),
