@@ -111,37 +111,6 @@ public class ItemService{
     @Path("getShowData")
     @POST
     public List<Item> getShowData(SearchItem data) throws SQLException {
-        System.out.println(data);
-        System.out.println("hej");
-        String categorySearch = data.getCategory().replaceAll(".*,", "");
-        String name = data.getBuyersName().replaceAll(".*,", "");
-        String startDate = data.getDateOfPurchaseStart();
-        String endDate = data.getDateOfPurchaseEnd();
-        boolean category = data.isCategoryc();
-        boolean purchaser= data.isPurchaser();
-        boolean productName = data.isProductName();
-        boolean price = data.isPrice();
-        boolean amount = data.isAmount();
-        boolean comment = data.isComment();
-        boolean dateOfPurchase = data.isDateOfPurchase();
-
-//        boolean start = false;
-//        boolean end = false;
-//
-//        List<String> searchList = new ArrayList<>();
-//        if(!category.equals("Ingen kategori")) searchList.add(category);
-//        if(!name.equals("Intet navn")) searchList.add(name);
-//        if(!startDate.equals("")) {
-//            searchList.add(startDate);
-//            start = true;
-//        }
-//        if(!endDate.equals("")) {
-//            searchList.add(endDate);
-//            end = true;
-//        }
-//        if(start && end) {
-//
-//        }
 
         itemsToReturn = itemDAO.getItems(data);
 
