@@ -31,12 +31,12 @@ public class CreateCSV {
                 .append("\n");
 
         for(Item item : array) {
-            csv.append(selected.charAt(2) == '1' ? item.getProductName() + "," : "")
+            csv.append(selected.charAt(2) == '1' ? "\"" + item.getProductName() + "\"," : "")
                     .append(selected.charAt(3) == '1' ? item.getPrice() + "," : "")
                     .append(selected.charAt(4) == '1' ? item.getAmount() + "," : "")
                     .append(selected.charAt(0) == '1' ? item.getCategory() + "," : "")
                     .append(selected.charAt(1) == '1' ? item.getBuyersName() + "," : "")
-                    .append(selected.charAt(6) == '1' ? item.getComment() + "," : "")
+                    .append(selected.charAt(6) == '1' ? "\"" + item.getComment() + "\"," : "")
                     .append(selected.charAt(5) == '1' ? item.getDateOfPurchase() : "")
                     .append("\n");
         }
