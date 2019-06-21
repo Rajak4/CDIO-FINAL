@@ -116,7 +116,7 @@ function makeCatDropdown(data) {
     //we loop over the data in jsonArray.
     $.each(data, function (key, val) {
         var catString;
-        if(key === 0) {
+        if(val[0] === '0') {
             catString = val[1];
         } else {
             catString = (val[0] + " - " + val[1]);
