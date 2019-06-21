@@ -120,6 +120,8 @@ public class ItemDAOImpl implements IItemDAO {
             }
         } else test.append("00");
 
+        hej.append(" ORDER BY dateOfPurchase DESC");
+
         Connection c = MySQL_conn.getConnection();
         List<Item> items = new ArrayList<>();
         PreparedStatement prest = c.prepareStatement(hej.toString());
