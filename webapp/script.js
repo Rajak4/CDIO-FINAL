@@ -31,6 +31,7 @@ function sendItemToServer() {
 function sendItemToServer2() {
     event.preventDefault();
     var data = $('#itemForm').serializeJSON();
+    console.log(data);
     $.ajax({
         url: 'rest/item/getShowData/',
         method: 'POST',
@@ -41,7 +42,14 @@ function sendItemToServer2() {
             window.open("table.html", "_self");
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            alert(jqXHR.responseText);
+            if(!data.purchaser && !data.categoryc && !data.productName && !data.price && !data.amount && !data.comment && !data.dateOfPurchase) {
+                Swal.fire({
+                    type: 'error',
+                    title: 'Du skal vælge mindst ét felt!',
+                    timer: 1500,
+                    showConfirmButton: false
+                });
+            }
         }
     });
 }

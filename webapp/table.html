@@ -24,13 +24,13 @@
     <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" type="text/css" rel="stylesheet">
 
 </head>
-<body onload="createTable()">
+<body onload="generateTableNew()">
 
 <a class="goToTopBtn" href="#"> <span>^</span></a>
 
 <div class="menu">
     <a href="showData.html"><input type="submit" class="topButton" value="Gå tilbage"></a>
-    <input type="submit" class="topButton" style="float: right;" value="Download til .CSV"></a>
+    <a href="Regnskab.csv"><input type="submit" class="topButton" style="float: right;" value="Download til .CSV"></a>
 </div>
 <div class="form-regnskab tableClass">
 
@@ -42,7 +42,7 @@
 
         <div class="section"><span>1</span>Data</div>
 
-        <table class = "tableHeaders">
+<!--        <table class = "tableHeaders">
             <thead>
             <tr>
                 <th>Produktnavn</th>
@@ -52,14 +52,17 @@
                 <th>Købers navn</th>
                 <th>Kommentar</th>
                 <th>Dato for køb</th>
-                <!-- <td>Slet ingrediens<td> -->
+                &lt;!&ndash; <td>Slet ingrediens<td> &ndash;&gt;
             </tr>
             </thead>
             <tbody id="dataTable">
 
             </tbody>
 
-        </table>
+        </table>-->
+        <div id="dynamicTable">
+
+        </div>
 
         <div >
             <table class = "tablePrice">

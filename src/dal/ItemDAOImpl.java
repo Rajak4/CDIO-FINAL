@@ -4,6 +4,7 @@ import dto.CreateCSV;
 import dto.Item;
 import dto.SearchItem;
 
+import javax.validation.constraints.Null;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +46,7 @@ public class ItemDAOImpl implements IItemDAO {
     public List<Item> getItems(boolean category, boolean purchaser, boolean productName, boolean price, boolean amount, boolean date, boolean comment, String purchaserName, String categoryName, String date1, String date2) throws SQLException {
         boolean firstWhere = true;
         boolean firstSelect = true;
+        StringBuilder selected = new StringBuilder();
         StringBuilder hej = new StringBuilder();
         StringBuilder test = new StringBuilder();
         hej.append("Select");
@@ -52,33 +54,40 @@ public class ItemDAOImpl implements IItemDAO {
         if (category) {
             hej.append(" category.categoryName as categoryName");
             firstSelect = false;
-        }
+            selected.append("1");
+        } else selected.append("0");
         if (purchaser) {
             hej.append(firstSelect ? "" : ",").append(" users.userName as nameOfPurchaser");
             firstSelect = false;
-        }
+            selected.append("1");
+        } else selected.append("0");
         if (productName) {
             hej.append(firstSelect ? "" : ",").append(" item.productName");
             firstSelect = false;
-        }
+            selected.append("1");
+        } else selected.append("0");
         if (price) {
             hej.append(firstSelect ? "" : ",").append(" item.price");
             firstSelect = false;
-        }
+            selected.append("1");
+        } else selected.append("0");
 
         if (amount) {
             hej.append(firstSelect ? "" : ",").append(" item.amount");
             firstSelect = false;
-        }
+            selected.append("1");
+        } else selected.append("0");
 
         if (date) {
             hej.append(firstSelect ? "" : ",").append(" item.dateOfPurchase");
             firstSelect = false;
-        }
+            selected.append("1");
+        } else selected.append("0");
 
         if (comment) {
             hej.append(firstSelect ? "" : ",").append(" item.comment");
-        }
+            selected.append("1");
+        } else selected.append("0");
 
         hej.append(" FROM item INNER JOIN category ON item.categoryNumber = category.categoryNumber INNER JOIN users ON purchaser = users.ID");
 
@@ -151,11 +160,12 @@ public class ItemDAOImpl implements IItemDAO {
             }
             if (price) {
                 item.setPrice(result.getDouble("price"));
-            }
+            } else item.setPrice(Double.NaN);
+
 
             if (amount) {
                 item.setAmount(result.getInt("amount"));
-            }
+            } else item.setAmount(-1);
 
             if (date) {
                 item.setDateOfPurchase(result.getString("dateOfPurchase"));
@@ -169,7 +179,8 @@ public class ItemDAOImpl implements IItemDAO {
             System.out.println(item.toString());
         }
 
-
+        CreateCSV csvFil = new CreateCSV();
+        csvFil.create(items, selected.toString());
         return items;
     }
 
