@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <script src="jquery-3.1.1.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <!--<script src="select2/dist/js/select2.min.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+
+    <script type="text/javascript" src="script.js"></script>
+    <script src="jquery.serialize-object.js"></script>
+
+    <!--css for dropdown-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/bulma.min.css">
+    <!--CSS for autocomplete dropdown box-->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel="shortcut icon" href="img/logo_blue.png">
+    <link rel="stylesheet" type="text/css" href="css/hej.css">
+
+    <meta charset="UTF-8">
+    <title>Regnskabshjælper</title>
+</head>
+
+<body onload="loadFromServer()">
+
+    <div class="form-regnskab">
+        <div class="form-title">
+            <h1><img src="img/logo_white.png" style="height: 45px; position: absolute; float: left; margin-top: -2px; margin-left: -35px;">egnskabshjælper</h1>
+        </div>
+
+        <form onsubmit="sendItemToServer()" id="itemForm">
+
+            <div class="section"><span>1</span>Produkt information</div>
+            <div class="section-inside">
+
+                <!--man kan ikke søge, hvis selecten er INDE i label, men det virker, når den er sådan her-->
+                <label for="category" class="label">Kategori:</label>
+                <select name="category" id="category" required style="width: 100%;"></select>
+                <button onclick="addCategory()" style="background-color: #23d160">Tilføj kategori</button>
+                <button onclick="deleteCategory()" style="background-color: #ff0537">Slet kategori</button>
+
+                <label for="productName" class="label">Produkt navn:
+                    <input id="productName" type="text" placeholder="Porsche 911 Carrera 4S, 3.8 Coupé 2d" class="input" maxlength="45" name="productName" required>
+                </label>
+
+                <div class="twoColumns">
+                    <label for="price" class="label">Pris i kr. (excl. moms):
+                        <input id="price" type="number" placeholder="499.999" min="1" name="price" required>
+                    </label>
+                    <label for="amount" class="label" style="float: right">Antal:
+                        <input id="amount" type="number" min="1" value="1" placeholder="1" name="amount" required>
+                    </label>
+                </div>
+                <div>
+                    <label for="dateOfPurchase" class="label">Dato for køb:
+                        <input id="dateOfPurchase" type="date" name="dateOfPurchase" required>
+                    </label>
+                </div>
+            </div>
+
+            <div class="section"><span>2</span>Købers information</div>
+
+            <div class="section-inside">
+                <!--<label for="buyersName" class="label">Købers navn:-->
+                    <!--<input id="buyersName" type="text" maxlength="45" placeholder="Mogens Pedersen" name="buyersName" required>-->
+                <!--</label>-->
+                <label for="buyersName" class="label">Købers navn:</label>
+                <select name="buyersName" id="buyersName" required style="width: 100%;"></select>
+                <button onclick="addBuyer()" style="background-color: #23d160">Tilføj køber</button>
+                <button onclick="deleteBuyer()" style="background-color: #ff0537">Slet køber</button>
+
+                <label for="comment" class="label">Kommentar:
+                    <textarea id="comment" name="comment" maxlength="105" class="textarea" placeholder="Købt grundet..." required></textarea>
+                </label>
+            </div>
+
+            <input type="submit" value="Indsend">
+        </form>
+    </div>
+</body>
+
+    <script>
+
+    </script>
+</html>
